@@ -8,7 +8,6 @@ import java.util.List;
 public class FileHandlerTest {
     private final FileHandler handler = new FileHandler();
 
-
     @Test
     public void testConvertInputCSVFileToArrayForTestInput1() {
         List<String[]> result = handler.convertInputCSVFileToArray(FileHandler.TEST_FILE_PATH + "1.csv");

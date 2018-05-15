@@ -16,7 +16,7 @@ public class FileHandler {
     public static final String TEST_FILE_PATH = "resources/testInput/";
     public static final int COLUMN = 15;
     private static final String DATE_STRING = "Date";
-    private static final String WEEKDAY_STRING = "Date";
+    private static final String WEEKDAY_STRING = "WeekDay";
     private static final String X = "X";
 
     public List<String[]> convertInputCSVFileToArray (String fileName) {

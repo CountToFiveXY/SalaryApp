@@ -13,6 +13,18 @@ public class StringUtils {
         return !isBlank(str);
     }
 
+    public static boolean isFloat(String str) {
+        if (isBlank(str)) {
+            return false;
+        }
+        try {
+            Float.parseFloat(str);
+            return true;
+        } catch (NumberFormatException exc) {
+            return false;
+        }
+    }
+
     public static String[] convertCsvRowString(String s) {
         String[] result =  s.split(",");
         return result;

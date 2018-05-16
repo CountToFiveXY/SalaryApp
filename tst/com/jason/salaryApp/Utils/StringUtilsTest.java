@@ -16,6 +16,17 @@ public class StringUtilsTest {
         Assert.assertTrue(StringUtils.isNotBlank("s"));
     }
 
+    //Unit tests For Method: isFloat
+    @Test
+    public void testIsFloat() {
+        Assert.assertFalse(StringUtils.isFloat(null));
+        Assert.assertFalse(StringUtils.isFloat(""));
+        Assert.assertFalse(StringUtils.isFloat(" "));
+        Assert.assertFalse(StringUtils.isFloat("s"));
+        Assert.assertTrue(StringUtils.isFloat("1"));
+        Assert.assertTrue(StringUtils.isFloat("2.5"));
+    }
+
     //Unit tests For Method: convertCsvRowString
     @Test
     public void testConvertCsvRowStringForValidRow() {

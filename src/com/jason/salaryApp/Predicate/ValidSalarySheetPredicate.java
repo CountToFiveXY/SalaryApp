@@ -1,5 +1,8 @@
 package com.jason.salaryApp.Predicate;
 
+import com.jason.salaryApp.Utils.StringUtils;
+
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -7,6 +10,33 @@ public class ValidSalarySheetPredicate implements Predicate<List<String[]>> {
 
     @Override
     public boolean test(List<String[]> salarySheet) {
+        return testNonEmptySlot(salarySheet)
+                && testSalarySheetColumns(salarySheet)
+                && testSalaryStrings(salarySheet);
+    }
+
+    boolean testNonEmptySlot(List<String[]> salarySheet) {
+        boolean flag = salarySheet.stream()
+                .allMatch(row -> Arrays.stream(row)
+                                .allMatch(StringUtils::isNotBlank));
+        if (!flag)
+            throw new IllegalArgumentException("[ERROR] Bad Salary Input: there exists empty row, please delete");
+        return true;
+    }
+
+    private boolean testSalarySheetColumns(List<String[]> workSheet) {
+        boolean flag = workSheet.stream()
+                .allMatch(row -> row.length == 2);
+        if (!flag)
+            throw new IllegalArgumentException("[ERROR]: Bad Salary Input: salary file should have 2 columns");
+        return true;
+    }
+
+    boolean testSalaryStrings(List<String[]> salarySheet) {
+        boolean flag = salarySheet.stream()
+                .allMatch(row -> StringUtils.isFloat(row[1]));
+        if (!flag)
+            throw new IllegalArgumentException("[ERROR] Bad Salary Input: some salary Amount is not right, please correct");
         return true;
     }
 }

@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-public class ValidWorkSheetPredicate implements Predicate<List<String[]>>{
+public class WorkSheetPredicate implements Predicate<List<String[]>>{
 
     @Autowired private ValidDatePredicate validDatePredicate;
     @Autowired private ValidWeekDayPredicate validWeekDayPredicate;

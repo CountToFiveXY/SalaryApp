@@ -8,12 +8,12 @@ import org.junit.Test;
 import java.util.List;
 
 public class ValidWorkSheetPredicateTest {
-    private ValidWorkSheetPredicate predicate;
+    private WorkSheetPredicate predicate;
     private WorkSheetFileReader workSheetFileReader;
 
     @Before
     public void setup() {
-        predicate = new ValidWorkSheetPredicate();
+        predicate = new WorkSheetPredicate();
         workSheetFileReader = new WorkSheetFileReader();
     }
 

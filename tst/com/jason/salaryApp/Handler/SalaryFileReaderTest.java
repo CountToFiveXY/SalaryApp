@@ -3,6 +3,7 @@ package com.jason.salaryApp.Handler;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.nio.file.NoSuchFileException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -10,7 +11,7 @@ public class SalaryFileReaderTest {
     private SalaryFileReader reader = new SalaryFileReader();
 
     @Test
-    public void testReadSalaryFileForValidFile() {
+    public void testReadSalaryFileForValidFile() throws NoSuchFileException{
         List<String[]> result = reader.readSalaryFile(SalaryFileReader.TEST_SALARY_FILE_PATH + "test_salary_good.txt");
         Assert.assertEquals("Jason", result.get(0)[0]);
         Assert.assertEquals("10.0", result.get(1)[1]);
@@ -18,14 +19,14 @@ public class SalaryFileReaderTest {
     }
 
     @Test
-    public void testReadSalaryFileForInValidFile() {
+    public void testReadSalaryFileForInValidFile() throws NoSuchFileException {
         List<String[]> result = reader.readSalaryFile(SalaryFileReader.TEST_SALARY_FILE_PATH + "test_salary_bad.txt");
         Assert.assertEquals("Jason", result.get(0)[0]);
         printSalarySheet(result);
     }
 
-    @Test
-    public void testReadSalaryFileForNonExistedFile() {
+    @Test(expected = NoSuchFileException.class)
+    public void testReadSalaryFileForNonExistedFile() throws NoSuchFileException{
         List<String[]> result = reader.readSalaryFile(SalaryFileReader.TEST_SALARY_FILE_PATH + "test_salary_ghost.txt");
     }
 

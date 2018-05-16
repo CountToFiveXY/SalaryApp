@@ -23,9 +23,9 @@ public class ValidWorkSheetPredicateTest {
         Assert.assertTrue(predicate.testNonEmptySlot(input));
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void testNonEmptySlotForBad() {
         List<String[]> input = fileHandler.convertInputCSVFileToArray(FileHandler.TEST_FILE_PATH + "3.csv");
-        Assert.assertTrue(predicate.testNonEmptySlot(input));
+        Assert.assertFalse(predicate.testNonEmptySlot(input));
     }
 }

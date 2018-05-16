@@ -15,13 +15,15 @@ public class StringUtils {
 
     public static String[] convertDateString(String s) {
         String[] result = s.split("-");
-        if (result.length != 3) {
-            return s.split("－");
-        }
         return result;
     }
 
     public static String[] convertWorkSlotString(String s) {
+        String[] result = s.split("-");
+        return result;
+    }
+
+    public static String[] convertWorkHourString(String s) {
         String[] result = s.split(":");
         if (result.length != 2) {
             return s.split("：");

@@ -10,7 +10,7 @@ public class ToolsTest {
         Tools.checkArgument(personName.endsWith("n"), "Name was wrong");
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void testCheckArgumentWithWrongArgument() {
         String personName = "JingWen";
         Tools.checkArgument(personName.endsWith("J"), "Name was wrong");

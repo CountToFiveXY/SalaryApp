@@ -6,19 +6,9 @@ import org.junit.Test;
 public class StringUtilsTest {
 
     @Test
-    public void convertDateStringTest1() {
+    public void convertValidDateStringTest() {
         String[] result;
         String inputString = "2018-01-02";
-        result = StringUtils.convertDateString(inputString);
-        Assert.assertEquals("2018", result[0]);
-        Assert.assertEquals("01", result[1]);
-        Assert.assertEquals("02", result[2]);
-    }
-
-    @Test
-    public void convertDateStringTest2() {
-        String[] result;
-        String inputString = "2018－01－02";
         result = StringUtils.convertDateString(inputString);
         Assert.assertEquals("2018", result[0]);
         Assert.assertEquals("01", result[1]);
@@ -50,7 +40,7 @@ public class StringUtilsTest {
     public void testConvertWorkSlotString1() {
         String[] result;
         String inputString = "9:30";
-        result = StringUtils.convertWorkSlotString(inputString);
+        result = StringUtils.convertWorkHourString(inputString);
         Assert.assertEquals("9", result[0]);
         Assert.assertEquals("30", result[1]);
     }
@@ -59,7 +49,7 @@ public class StringUtilsTest {
     public void testConvertWorkSlotString2() {
         String[] result;
         String inputString = "9：30";
-        result = StringUtils.convertWorkSlotString(inputString);
+        result = StringUtils.convertWorkHourString(inputString);
         Assert.assertEquals("9", result[0]);
         Assert.assertEquals("30", result[1]);
     }

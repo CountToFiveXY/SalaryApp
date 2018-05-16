@@ -1,6 +1,6 @@
 package com.jason.salaryApp.Predicate;
 
-import com.jason.salaryApp.Handler.FileHandler;
+import com.jason.salaryApp.Handler.WorkSheetFileReader;
 import com.jason.salaryApp.Utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -16,7 +16,7 @@ public class ValidWorkSheetPredicate implements Predicate<List<String[]>>{
     @Autowired private ValidWorkSlotPredicate validWorkSlotPredicate;
 
     /*
-    Valid WorkSheet passed from FileHandler should be like this
+    Valid WorkSheet passed from WorkSheetFileReader should be like this
     1. 15 column sheet
     2. first row: Date, 2018-4-16, 2018-4-16, 2018-4-17... 2018-4-22, 2018-4-22
     3 .Second Row: WeekDay, Mon, Mon, Tue, Tue... Sun, Sun
@@ -44,7 +44,7 @@ public class ValidWorkSheetPredicate implements Predicate<List<String[]>>{
 
     private boolean testWorkSheetColumns(List<String[]> workSheet) {
         boolean flag = workSheet.stream()
-                .allMatch(row -> row.length == FileHandler.COLUMN);
+                .allMatch(row -> row.length == WorkSheetFileReader.COLUMN);
         if (!flag)
             throw new IllegalArgumentException("[ERROR]: Bad Input: table should have 15 columns");
         return true;

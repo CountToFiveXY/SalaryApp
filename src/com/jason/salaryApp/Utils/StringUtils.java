@@ -13,6 +13,11 @@ public class StringUtils {
         return !isBlank(str);
     }
 
+    public static String[] convertCsvRowString(String s) {
+        String[] result =  s.split(",");
+        return result;
+    }
+
     public static String[] convertDateString(String s) {
         String[] result = s.split("-");
         return result;
@@ -28,6 +33,11 @@ public class StringUtils {
         if (result.length != 2) {
             return s.split("：");
         }
+        return result;
+    }
+
+    public static String[] convertSalaryString(String s) {
+        String[] result = s.split("-");
         return result;
     }
 

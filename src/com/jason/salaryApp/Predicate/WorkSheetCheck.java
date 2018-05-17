@@ -2,18 +2,12 @@ package com.jason.salaryApp.Predicate;
 
 import com.jason.salaryApp.Handler.WorkSheetFileReader;
 import com.jason.salaryApp.Utils.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-public class WorkSheetPredicate implements Predicate<List<String[]>>{
-
-    @Autowired private ValidDatePredicate validDatePredicate;
-    @Autowired private ValidWeekDayPredicate validWeekDayPredicate;
-    @Autowired private ValidWorkSlotPredicate validWorkSlotPredicate;
+public class WorkSheetCheck {
 
     /*
     Valid WorkSheet passed from WorkSheetFileReader should be like this
@@ -23,7 +17,6 @@ public class WorkSheetPredicate implements Predicate<List<String[]>>{
     4 .Each slot should have value
     5. All other rows should have Valid WorkSlot or X
      */
-    @Override
     public boolean test(List<String[]> workSheet) {
         return testNonEmptySlot(workSheet)
                 && testWorkSheetColumns(workSheet)
@@ -32,13 +25,16 @@ public class WorkSheetPredicate implements Predicate<List<String[]>>{
                 && testAllWorkSlotValid(workSheet);
     }
 
-    boolean testNonEmptySlot(List<String[]> workSheet) {
-        boolean flag = workSheet.stream()
-                .allMatch(row -> !row[0].equals("X") &&
-                        Arrays.stream(row)
-                                .allMatch(StringUtils::isNotBlank));
-        if (!flag)
-            throw new IllegalArgumentException("[ERROR] Bad Input: some slot has bad value");
+    private boolean testNonEmptySlot(List<String[]> workSheet) {
+
+        workSheet.forEach(row -> {
+            boolean f = !row[0].equals("X") &&
+                    Arrays.stream(row)
+                            .allMatch(StringUtils::isNotBlank);
+            if (!f)
+                throw new IllegalArgumentException("[ERROR] Bad Input: this workSlot's value is wrong:" + Arrays.toString(row));
+        });
+
         return true;
     }
 
@@ -54,7 +50,7 @@ public class WorkSheetPredicate implements Predicate<List<String[]>>{
         boolean flag = workSheet.get(0)[0].equals("Date")
                 && Arrays.stream(workSheet.get(0))
                 .filter(s -> !s.equals("Date"))
-                .allMatch(validDatePredicate);
+                .allMatch(new ValidDatePredicate());
         if (!flag)
             throw new IllegalArgumentException("[ERROR] Bad Date Row");
         return true;
@@ -62,9 +58,9 @@ public class WorkSheetPredicate implements Predicate<List<String[]>>{
 
     private boolean testWorkSheetWorkDayRow(List<String[]> workSheet) {
         boolean flag = workSheet.get(1)[0].equals("WeekDay")
-                && Arrays.stream(workSheet.get(0))
+                && Arrays.stream(workSheet.get(1))
                 .filter(s -> !s.equals("WeekDay"))
-                .allMatch(validWeekDayPredicate);
+                .allMatch(new ValidWeekDayPredicate());
         if (!flag)
             throw new IllegalArgumentException("[ERROR] Bad WeekDay Row");
         return true;
@@ -72,13 +68,13 @@ public class WorkSheetPredicate implements Predicate<List<String[]>>{
 
     private boolean testAllWorkSlotValid(List<String[]> workSheet) {
         List<String[]> workSlotSheet = getWorkSlotSheet(workSheet);
-        boolean flag = workSlotSheet.stream()
-                .allMatch(row -> Arrays.stream(row)
-                        .filter(s -> !s.equals("X"))
-                        .allMatch(validWorkSlotPredicate)
-                );
-        if (!flag)
-            throw new IllegalArgumentException("[ERROR] Bad Input: Some workSlot's value is wrong");
+
+        for(String[] row : workSlotSheet) {
+            boolean f = Arrays.stream(row).filter(s -> !s.equals("X")).allMatch(new ValidWorkSlotPredicate());
+            if (!f)
+                throw new IllegalArgumentException("[ERROR] Bad Input: some workSlot value of this row may be wrong:" + Arrays.toString(row));
+        }
+
         return true;
     }
 

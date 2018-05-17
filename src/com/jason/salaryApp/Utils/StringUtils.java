@@ -36,7 +36,10 @@ public class StringUtils {
     }
 
     public static String[] convertWorkSlotString(String s) {
-        String[] result = s.split("-");
+        String[] result = s.split("－");
+        if (result.length != 2) {
+            return s.split("-");
+        }
         return result;
     }
 

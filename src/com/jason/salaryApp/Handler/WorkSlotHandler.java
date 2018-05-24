@@ -12,37 +12,44 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class WorkSlotHandler {
-    @Getter
-    static HashMap<String, List<WorkSlot>> personToWorkSlotMap = new HashMap<>();
-    @Autowired
-    private ValidWorkSlotPredicate validWorkSlotPredicate;
 
-    private List<String> NonSalaryRowFirstString = Arrays.asList("X", "Date", "WeekDay");
+    private ValidWorkSlotPredicate validWorkSlotPredicate = new ValidWorkSlotPredicate();
+    private List<String> NonSalaryRowFirstString = Arrays.asList("Date", "WeekDay");
 
-
-    public void setUpWorkSlotMapForEachSheet(List<String[]> worksheet) {
-        //TODO: Add a check here For worksheet
+    public HashMap<String, List<WorkSlot>> setUpWorkSlotMapForEachSheet(List<String[]> worksheet) {
+        HashMap<String, List<WorkSlot>> personToWorkSlotMap = new HashMap<>();
         String[] dateRow = worksheet.get(0);
         String[] weekDateRow = worksheet.get(1);
         List<String[]> filteredWorkSheet = getWorkSlotTables(worksheet);
 
         filteredWorkSheet.forEach(rowContent -> {
             String personName = rowContent[0];
-            List<WorkSlot> workSlots = Arrays.stream(rowContent)
-                    .filter(validWorkSlotPredicate)
-                    .map(workSlot -> createWorkSlot(workSlot, rowContent, dateRow, weekDateRow))
-                    .collect(Collectors.toList());
-            fillMap(personName, workSlots);
+            List<WorkSlot> workSlotsForPerson = buildWorkSlotListForPerson(rowContent, dateRow, weekDateRow);
+            fillWorkSlotMap(personToWorkSlotMap, personName, workSlotsForPerson);
         });
+        
+        return personToWorkSlotMap;
     }
 
-    private void fillMap(String personName, List<WorkSlot> workSlots) {
+    private List<WorkSlot> buildWorkSlotListForPerson(String[] rowContent, String[] dateRow, String[] weekDateRow) {
+        List<WorkSlot> workSlotsForPerson = new ArrayList<>();
+
+        for (int index = 0; index < WorkSheetFileReader.COLUMN; index++) {
+            String content = rowContent[index];
+            if (validWorkSlotPredicate.test(content)) {
+                workSlotsForPerson.add(createWorkSlotByIndex(index, content, dateRow, weekDateRow));
+            }
+        }
+
+        return workSlotsForPerson;
+    }
+
+    private void fillWorkSlotMap(HashMap<String, List<WorkSlot>> personToWorkSlotMap, String personName, List<WorkSlot> workSlots) {
         if (!personToWorkSlotMap.containsKey(personName)) {
             personToWorkSlotMap.put(personName, new ArrayList<>());
         }
         personToWorkSlotMap.get(personName).addAll(workSlots);
     }
-
 
     private List<String[]> getWorkSlotTables(List<String[]> worksheet) {
         return worksheet.stream()
@@ -50,8 +57,7 @@ public class WorkSlotHandler {
                 .collect(Collectors.toList());
     }
 
-    private WorkSlot createWorkSlot(String workSlotString, String[] rowContent, String[] dateRow, String[] weekDateRow) {
-        int index = Arrays.asList(rowContent).indexOf(workSlotString);
+    private WorkSlot createWorkSlotByIndex(int index, String workSlotString, String[] dateRow, String[] weekDateRow) {
         String date = dateRow[index];
         String workDay = weekDateRow[index];
         return new WorkSlot(workSlotString, date, workDay);

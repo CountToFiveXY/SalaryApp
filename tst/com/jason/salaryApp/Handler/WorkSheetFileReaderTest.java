@@ -62,6 +62,11 @@ public class WorkSheetFileReaderTest {
         Assert.assertEquals("X", result[13]);
     }
 
+    @Test
+    public void testGeneratingTestWorkSheet() {
+        printWorkSheet(reader.generateTestWorkSheet());
+    }
+
     private void printWorkSheet(List<String[]> workSheet) {
         System.out.println("\n[INFO]From WeekSheetReader Unit Test: ");
         workSheet.forEach(row -> System.out.println(Arrays.toString(row)));

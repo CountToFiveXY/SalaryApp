@@ -15,7 +15,7 @@ public class WorkSheetCheck {
     2. first row: Date, 2018-4-16, 2018-4-16, 2018-4-17... 2018-4-22, 2018-4-22
     3 .Second Row: WeekDay, Mon, Mon, Tue, Tue... Sun, Sun
     4 .Each slot should have value
-    5. All other rows should have Valid WorkSlot or X
+    5. All other rows should not start with X and must have valid workSlot String.
      */
     public boolean test(List<String[]> workSheet) {
         return testNonEmptySlot(workSheet)
@@ -28,10 +28,10 @@ public class WorkSheetCheck {
     private boolean testNonEmptySlot(List<String[]> workSheet) {
 
         workSheet.forEach(row -> {
-            boolean f = !row[0].equals("X") &&
+            boolean flag = !row[0].equals("X") &&
                     Arrays.stream(row)
                             .allMatch(StringUtils::isNotBlank);
-            if (!f)
+            if (!flag)
                 throw new IllegalArgumentException("[ERROR] Bad Input: this workSlot's value is wrong:" + Arrays.toString(row));
         });
 

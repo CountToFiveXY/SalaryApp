@@ -34,6 +34,10 @@ public class WorkSheetFileReader {
         return workSheet;
     }
 
+    public List<String[]> generateTestWorkSheet() {
+        return readWorkSheetFile(TEST_WORKSHEET_FILE_PATH + "1.csv");
+    }
+
     /*
     1. Fill each blank slot with X
     2. remove blank prefix for each String

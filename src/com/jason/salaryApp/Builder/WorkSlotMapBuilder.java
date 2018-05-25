@@ -1,9 +1,8 @@
-package com.jason.salaryApp.Handler;
+package com.jason.salaryApp.Builder;
 
 import com.jason.salaryApp.Data.WorkSlot;
+import com.jason.salaryApp.Handler.WorkSheetFileReader;
 import com.jason.salaryApp.Predicate.ValidWorkSlotPredicate;
-import lombok.Getter;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,7 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class WorkSlotHandler {
+public class WorkSlotMapBuilder {
 
     private ValidWorkSlotPredicate validWorkSlotPredicate = new ValidWorkSlotPredicate();
     private List<String> NonSalaryRowFirstString = Arrays.asList("Date", "WeekDay");

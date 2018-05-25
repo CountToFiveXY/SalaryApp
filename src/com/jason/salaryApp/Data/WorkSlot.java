@@ -3,8 +3,6 @@ package com.jason.salaryApp.Data;
 import com.jason.salaryApp.Utils.StringUtils;
 import lombok.Data;
 
-import java.util.Arrays;
-
 @Data
 public class WorkSlot {
     private final String fromTime;

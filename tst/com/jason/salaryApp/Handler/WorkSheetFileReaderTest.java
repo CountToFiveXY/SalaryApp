@@ -1,4 +1,5 @@
 package com.jason.salaryApp.Handler;
+
 import com.jason.salaryApp.Utils.Tools;
 import org.junit.Assert;
 import org.junit.Test;
@@ -69,7 +70,8 @@ public class WorkSheetFileReaderTest {
     }
 
     private void printWorkSheet(List<String[]> workSheet) {
-        Tools.print("\n[INFO]From WorkFileSheetReader Unit Test: ");
+        Tools.print("[INFO]From WorkSheetFileReader Unit Test: ");
         workSheet.forEach(row -> System.out.println(Arrays.toString(row)));
+        System.out.println("-----------TEST SEPARATE LINE-----------");
     }
 }

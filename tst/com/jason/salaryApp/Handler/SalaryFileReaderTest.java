@@ -32,7 +32,8 @@ public class SalaryFileReaderTest {
     }
 
     private void printSalarySheet(List<String[]> workSheet) {
-        Tools.print("\n[INFO]From SalaryFileReader Unit Test: ");
+        Tools.print("[INFO]From SalaryFileReader Unit Test: ");
         workSheet.forEach(row -> System.out.println(Arrays.toString(row)));
+        System.out.println("-----------TEST SEPARATE LINE-----------");
     }
 }

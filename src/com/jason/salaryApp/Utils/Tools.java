@@ -34,6 +34,10 @@ public class Tools {
         return format.format(date).toString();
     }
 
+    public static void print(String str) {
+        System.out.println(str);
+    }
+
     public static void checkArgument(boolean condition, @NonNull String errorMessage) {
         if (!condition) {
             throw new IllegalArgumentException(String.valueOf(errorMessage));

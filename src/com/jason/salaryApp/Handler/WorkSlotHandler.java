@@ -27,8 +27,14 @@ public class WorkSlotHandler {
             List<WorkSlot> workSlotsForPerson = buildWorkSlotListForPerson(rowContent, dateRow, weekDateRow);
             fillWorkSlotMap(personToWorkSlotMap, personName, workSlotsForPerson);
         });
-        
+
         return personToWorkSlotMap;
+    }
+
+    private List<String[]> getWorkSlotTables(List<String[]> worksheet) {
+        return worksheet.stream()
+                .filter(rowContent -> !NonSalaryRowFirstString.contains(rowContent[0]))
+                .collect(Collectors.toList());
     }
 
     private List<WorkSlot> buildWorkSlotListForPerson(String[] rowContent, String[] dateRow, String[] weekDateRow) {
@@ -44,22 +50,16 @@ public class WorkSlotHandler {
         return workSlotsForPerson;
     }
 
+    private WorkSlot createWorkSlotByIndex(int index, String workSlotString, String[] dateRow, String[] weekDateRow) {
+        String date = dateRow[index];
+        String workDay = weekDateRow[index];
+        return new WorkSlot(workSlotString, date, workDay);
+    }
+
     private void fillWorkSlotMap(HashMap<String, List<WorkSlot>> personToWorkSlotMap, String personName, List<WorkSlot> workSlots) {
         if (!personToWorkSlotMap.containsKey(personName)) {
             personToWorkSlotMap.put(personName, new ArrayList<>());
         }
         personToWorkSlotMap.get(personName).addAll(workSlots);
-    }
-
-    private List<String[]> getWorkSlotTables(List<String[]> worksheet) {
-        return worksheet.stream()
-                .filter(rowContent -> !NonSalaryRowFirstString.contains(rowContent[0]))
-                .collect(Collectors.toList());
-    }
-
-    private WorkSlot createWorkSlotByIndex(int index, String workSlotString, String[] dateRow, String[] weekDateRow) {
-        String date = dateRow[index];
-        String workDay = weekDateRow[index];
-        return new WorkSlot(workSlotString, date, workDay);
     }
 }

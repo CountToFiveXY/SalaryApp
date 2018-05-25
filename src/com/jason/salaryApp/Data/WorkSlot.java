@@ -3,6 +3,8 @@ package com.jason.salaryApp.Data;
 import com.jason.salaryApp.Utils.StringUtils;
 import lombok.Data;
 
+import java.util.Arrays;
+
 @Data
 public class WorkSlot {
     private final String fromTime;
@@ -11,7 +13,7 @@ public class WorkSlot {
     private final String WeekDay;
 
     public WorkSlot(String timeString, String Date, String WeekDay) {
-        String[] time = StringUtils.convertDateString(timeString);
+        String[] time = StringUtils.convertWorkSlotString(timeString);
         this.fromTime = time[0];
         this.toTime = time[1];
         this.Date = Date;

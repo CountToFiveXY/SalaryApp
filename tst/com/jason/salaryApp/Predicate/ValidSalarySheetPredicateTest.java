@@ -1,7 +1,7 @@
 package com.jason.salaryApp.Predicate;
 
 
-import com.jason.salaryApp.Handler.SalaryFileReader;
+import com.jason.salaryApp.Reader.SalaryFileReader;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

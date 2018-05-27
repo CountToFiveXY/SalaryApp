@@ -1,7 +1,7 @@
 package com.jason.salaryApp.Builder;
 
 import com.jason.salaryApp.Data.WorkSlot;
-import com.jason.salaryApp.Handler.WorkSheetFileReader;
+import com.jason.salaryApp.Reader.WorkSheetFileReader;
 import com.jason.salaryApp.Predicate.ValidWorkSlotPredicate;
 
 import java.util.ArrayList;

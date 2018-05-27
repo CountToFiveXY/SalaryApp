@@ -1,6 +1,6 @@
 package com.jason.salaryApp.Builder;
 
-import com.jason.salaryApp.Handler.SalaryFileReader;
+import com.jason.salaryApp.Reader.SalaryFileReader;
 import com.jason.salaryApp.Utils.Tools;
 import org.junit.Test;
 

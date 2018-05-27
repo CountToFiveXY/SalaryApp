@@ -1,6 +1,6 @@
 package com.jason.salaryApp.Predicate;
 
-import com.jason.salaryApp.Handler.WorkSheetFileReader;
+import com.jason.salaryApp.Reader.WorkSheetFileReader;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.Before;

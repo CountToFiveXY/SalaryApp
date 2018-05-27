@@ -1,13 +1,6 @@
 package com.jason.salaryApp.Utils;
 
 public class StringUtils {
-    public static int toInteger(String s){
-        return Integer.parseInt(s);
-    }
-
-    public static String combine(String str1, String str2) {
-        return str1 + str2;
-    }
 
     public static boolean isNotBlank(String str) {
         return !isBlank(str);
@@ -23,6 +16,18 @@ public class StringUtils {
         } catch (NumberFormatException exc) {
             return false;
         }
+    }
+
+    public static int toInteger(String s){
+        return Integer.parseInt(s);
+    }
+
+    public static float toFloat(String s) {
+        return Float.parseFloat(s);
+    }
+
+    public static String combine(String str1, String str2) {
+        return str1 + str2;
     }
 
     public static String[] convertCsvRowString(String s) {

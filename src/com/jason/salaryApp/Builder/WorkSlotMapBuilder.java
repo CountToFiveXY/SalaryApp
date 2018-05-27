@@ -15,7 +15,7 @@ public class WorkSlotMapBuilder {
     private ValidWorkSlotPredicate validWorkSlotPredicate = new ValidWorkSlotPredicate();
     private List<String> NonSalaryRowFirstString = Arrays.asList("Date", "WeekDay");
 
-    public HashMap<String, List<WorkSlot>> setUpWorkSlotMapForEachSheet(List<String[]> worksheet) {
+    public HashMap<String, List<WorkSlot>> buildWorkSlotMapForEachSheet(List<String[]> worksheet) {
         HashMap<String, List<WorkSlot>> personToWorkSlotMap = new HashMap<>();
         String[] dateRow = worksheet.get(0);
         String[] weekDateRow = worksheet.get(1);

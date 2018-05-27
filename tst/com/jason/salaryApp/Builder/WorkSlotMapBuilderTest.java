@@ -5,6 +5,7 @@ import com.jason.salaryApp.Handler.WorkSheetFileReader;
 import com.jason.salaryApp.Utils.Tools;
 import org.junit.Test;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -15,7 +16,7 @@ public class WorkSlotMapBuilderTest {
     @Test
     public void testSetUpWorkSlotMapForEachSheet() {
         List<String[]> input = getInputTable("1.csv");
-        HashMap<String, List<WorkSlot>> result = builder.setUpWorkSlotMapForEachSheet(input);
+        HashMap<String, List<WorkSlot>> result = builder.buildWorkSlotMapForEachSheet(input);
         printMap(result);
     }
 
@@ -26,7 +27,7 @@ public class WorkSlotMapBuilderTest {
     private void printMap(HashMap<String, List<WorkSlot>> map) {
         Tools.print("[INFO]From WorkSlotMapBuilder Unit Test: ");
         map.forEach((personName, workSlots) -> {
-            Tools.print(personName + workSlots.toString());
+            Tools.print(personName + "->" + workSlots.toString());
         });
         System.out.println("-----------TEST SEPARATE LINE-----------");
     }

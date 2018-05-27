@@ -7,6 +7,6 @@ import java.util.List;
 
 @Data
 public class SalaryCalculationInput {
-    private final HashMap<String, List<WorkSlot>> workSlotMap;
-    private final HashMap<String, String> salaryMap;
+    private HashMap<String, List<WorkSlot>> workSlotMap;
+    private HashMap<String, String> salaryMap;
 }

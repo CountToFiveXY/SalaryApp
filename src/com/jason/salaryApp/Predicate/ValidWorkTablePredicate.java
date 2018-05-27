@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class WorkSheetCheck {
+public class ValidWorkTablePredicate {
 
     /*
     Valid WorkSheet passed from WorkSheetFileReader should be like this

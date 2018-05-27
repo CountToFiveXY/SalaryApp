@@ -11,13 +11,13 @@ import static org.junit.Assert.*;
 import java.util.Arrays;
 import java.util.List;
 
-public class WorkSheetCheckTest {
-    private WorkSheetCheck predicate;
+public class ValidWorkTablePredicateTest {
+    private ValidWorkTablePredicate predicate;
     private WorkSheetFileReader workSheetFileReader;
 
     @Before
     public void setup() {
-        predicate = new WorkSheetCheck();
+        predicate = new ValidWorkTablePredicate();
         workSheetFileReader = new WorkSheetFileReader();
     }
 

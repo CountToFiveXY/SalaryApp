@@ -15,7 +15,7 @@ public class ValidSalarySheetPredicate implements Predicate<List<String[]>> {
                 && testSalaryStrings(salarySheet);
     }
 
-    boolean testNonEmptySlot(List<String[]> salarySheet) {
+    private boolean testNonEmptySlot(List<String[]> salarySheet) {
         boolean flag = salarySheet.stream()
                 .allMatch(row -> Arrays.stream(row)
                                 .allMatch(StringUtils::isNotBlank));
@@ -32,7 +32,7 @@ public class ValidSalarySheetPredicate implements Predicate<List<String[]>> {
         return true;
     }
 
-    boolean testSalaryStrings(List<String[]> salarySheet) {
+    private boolean testSalaryStrings(List<String[]> salarySheet) {
         boolean flag = salarySheet.stream()
                 .allMatch(row -> StringUtils.isFloat(row[1]));
         if (!flag)

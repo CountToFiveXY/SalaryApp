@@ -26,4 +26,8 @@ public class SalaryFileReader {
         }
         return salaryContent;
     }
+
+    public List<String[]> getFormalSalaryFile() throws NoSuchFileException{
+        return readSalaryFile(SALARY_FILE_PATH);
+    }
 }

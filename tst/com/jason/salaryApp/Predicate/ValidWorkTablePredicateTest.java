@@ -1,12 +1,10 @@
 package com.jason.salaryApp.Predicate;
 
 import com.jason.salaryApp.Reader.WorkSheetFileReader;
-import org.junit.Rule;
 import org.junit.Test;
 import org.junit.Before;
-import org.junit.rules.ExpectedException;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
 import java.util.List;
@@ -20,9 +18,6 @@ public class ValidWorkTablePredicateTest {
         predicate = new ValidWorkTablePredicate();
         workSheetFileReader = new WorkSheetFileReader();
     }
-
-    @Rule
-    public ExpectedException exception = ExpectedException.none();
 
     @Test
     public void testNonEmptySlotForGood() {

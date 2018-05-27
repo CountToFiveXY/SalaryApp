@@ -65,8 +65,16 @@ public class WorkSheetFileReaderTest {
     }
 
     @Test
-    public void testGeneratingTestWorkSheet() {
-        printWorkSheet(reader.generateTestWorkSheet());
+    public void testGetFormalFilesPath() {
+        List<String> result = reader.getFormalFilesPath();
+        Assert.assertEquals(3, result.size());
+        Assert.assertEquals("tables/1.csv", result.get(0));
+        Assert.assertEquals("tables/3.csv", result.get(2));
+    }
+
+    @Test
+    public void testGetTestWorkSheet() {
+        printWorkSheet(reader.getTestWorkSheet());
     }
 
     private void printWorkSheet(List<String[]> workSheet) {

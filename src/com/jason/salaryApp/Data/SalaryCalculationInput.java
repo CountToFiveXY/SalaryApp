@@ -2,11 +2,16 @@ package com.jason.salaryApp.Data;
 
 import lombok.Data;
 
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Data
 public class SalaryCalculationInput {
-    private HashMap<String, List<WorkSlot>> workSlotMap;
-    private HashMap<String, String> salaryMap;
+    private Map<String, List<WorkSlot>> workSlotMap;
+    private Map<String, Float> salaryMap;
+
+    public SalaryCalculationInput(Map<String, List<WorkSlot>> workSlotMap, Map<String, Float> salaryMap) {
+        this.workSlotMap = workSlotMap;
+        this.salaryMap = salaryMap;
+    }
 }

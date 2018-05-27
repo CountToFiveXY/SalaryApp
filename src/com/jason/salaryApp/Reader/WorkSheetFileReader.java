@@ -8,20 +8,25 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Component
 public class WorkSheetFileReader {
-    public static final String WORKSHEET_FILE_PATH = "tables/";
-    public static final String TEST_WORKSHEET_FILE_PATH = "resources/testInput/";
+
     public static final int COLUMN = 15;
     private static final String DATE_STRING = "Date";
     private static final String WEEKDAY_STRING = "WeekDay";
     private static final String X = "X";
+    private static final List<String> files = Arrays.asList("1.csv", "2.csv", "3.csv");
 
-    public List<String[]> readWorkSheetFile(String fileName) {
+    //Path Constant
+    public static final String WORKSHEET_FILE_PATH = "tables/";
+    public static final String TEST_WORKSHEET_FILE_PATH = "resources/testInput/";
+
+    public List<String[]> readWorkSheetFile(String filePath) {
         List<String[]> workSheet = new ArrayList<>();
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(fileName));
+            BufferedReader reader = new BufferedReader(new FileReader(filePath));
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] rowContent = StringUtils.convertCsvRowString(line);
@@ -29,12 +34,18 @@ public class WorkSheetFileReader {
                 workSheet.add(modifyEachRow(rowContent));
             }
         } catch (IOException e){
-            System.out.println("[Warning]: Missing " + fileName);
+            System.out.println("[Warning]: Missing " + filePath);
         }
         return workSheet;
     }
 
-    public List<String[]> generateTestWorkSheet() {
+    public List<String> getFormalFilesPath() {
+        return files.stream()
+                .map(fileName -> WORKSHEET_FILE_PATH + fileName)
+                .collect(Collectors.toList());
+    }
+
+    public List<String[]> getTestWorkSheet() {
         return readWorkSheetFile(TEST_WORKSHEET_FILE_PATH + "1.csv");
     }
 

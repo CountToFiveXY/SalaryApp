@@ -30,11 +30,12 @@ public class SalaryAppHandler {
 
     @Autowired private SalaryCalculator salaryCalculator;
 
+    //build workSlotMap and SalaryMap separately and build Calculation Input with them.
     public void buildCalculationInput() throws NoSuchFileException{
         calculationInput = new SalaryCalculationInput(getWorkSlotsMap(), getSalaryMap());
     }
 
-    public void CalculateSalary() {
+    public void calculateSalary() {
         salaryCalculator.calculate(calculationInput);
     }
 
@@ -62,5 +63,4 @@ public class SalaryAppHandler {
     private boolean isValidWorkSheet(List<String[]> workSheet) {
        return workSheetPredicate.test(workSheet);
     }
-
 }

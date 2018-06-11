@@ -61,6 +61,16 @@ public class StringUtils {
         return result;
     }
 
+    public static Float convertTimeToNumberFormat(String timeString) {
+        String[] timeArray = convertWorkHourString(timeString);
+        if (timeArray.length > 1) {
+            int hour = toInteger(timeArray[0]);
+            float minute = toInteger(timeArray[1])/60f;
+            return hour + minute;
+        }
+        return (Float) toFloat(timeArray[0]);
+    }
+
     public static String removeBlankPrefix(String s) {
         if (isBlank(s)) {
             return null;

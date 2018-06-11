@@ -65,6 +65,25 @@ public class StringUtilsTest {
         Assert.assertEquals(1, result.length);
     }
 
+    //Unit tests For Method: convertWorkSlotString
+    @Test
+    public void testConvertWorkSlotString1() {
+        String[] result;
+        String inputString = "4-10";
+        result = StringUtils.convertWorkSlotString(inputString);
+        Assert.assertEquals("4", result[0]);
+        Assert.assertEquals("10", result[1]);
+    }
+
+    @Test
+    public void testConvertWorkSlotString2() {
+        String[] result;
+        String inputString = "9:30－4";
+        result = StringUtils.convertWorkSlotString(inputString);
+        Assert.assertEquals("9:30", result[0]);
+        Assert.assertEquals("4", result[1]);
+    }
+
     //Unit tests For Method: convertWorkHourString
     @Test
     public void testConvertWorkHourString1() {
@@ -84,6 +103,15 @@ public class StringUtilsTest {
         Assert.assertEquals("30", result[1]);
     }
 
+    @Test
+    public void testConvertWorkHourString3() {
+        String[] result;
+        String inputString = "5";
+        result = StringUtils.convertWorkHourString(inputString);
+        Assert.assertEquals("5", result[0]);
+        Assert.assertEquals(1,result.length);
+    }
+
     //Unit tests For Method: convertSalaryString
     @Test
     public void testConvertSalaryStringForValidString() {
@@ -100,6 +128,23 @@ public class StringUtilsTest {
         String inputString = "";
         result = StringUtils.convertSalaryString(inputString);
         Assert.assertEquals(1, result.length);
+    }
+
+    //Unit tests for Method: convertTimeToNumberFormat
+    @Test
+    public void testConvertTimeToNumberFormat1() {
+        Float result;
+        String inputString = "9:30";
+        result = StringUtils.convertTimeToNumberFormat(inputString);
+        Assert.assertTrue(result == 9.5);
+    }
+
+    @Test
+    public void testConvertTimeToNumberFormat2() {
+        Float result;
+        String inputString = "5";
+        result = StringUtils.convertTimeToNumberFormat(inputString);
+        Assert.assertTrue(result == 5);
     }
 
     //Unit tests For Method: removeBlankPrefix

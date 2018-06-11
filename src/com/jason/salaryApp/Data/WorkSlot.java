@@ -17,4 +17,12 @@ public class WorkSlot {
         this.Date = Date;
         this.WeekDay = WeekDay;
     }
+
+    public double getWorkTime() {
+        float from = StringUtils.convertTimeToNumberFormat(fromTime);
+        float to = StringUtils.convertTimeToNumberFormat(toTime);
+        double workTime = to - from;
+        //assume a workTime is longer than 3 hours
+        return workTime > 2.5 ? workTime : workTime + 12;
+    }
 }

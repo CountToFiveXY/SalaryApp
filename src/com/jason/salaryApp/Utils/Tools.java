@@ -7,6 +7,7 @@ import java.util.Date;
 
 public class Tools {
 
+    public static final String LOG_SEPARATOR = "@";
     public static String correctDate (String date) {
         String[] dateArray = StringUtils.convertDateString(date);
         String modifiedDate = "";

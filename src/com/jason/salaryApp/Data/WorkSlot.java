@@ -25,4 +25,8 @@ public class WorkSlot {
         //assume a workTime is longer than 3 hours
         return workTime > 2.5 ? workTime : workTime + 12;
     }
+
+    public String toLog() {
+        return String.format("Date: %s, workTime: %s to %s, %.1f hours", getDate(),getFromTime(),getToTime(), getWorkTime());
+    }
 }

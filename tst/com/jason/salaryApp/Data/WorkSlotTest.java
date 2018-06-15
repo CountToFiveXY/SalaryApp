@@ -1,5 +1,6 @@
 package com.jason.salaryApp.Data;
 
+import com.jason.salaryApp.Utils.Tools;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -21,5 +22,16 @@ public class WorkSlotTest {
         double result;
         result = testWorkSlot2.getWorkTime();
         Assert.assertTrue(result == 7.5);
+    }
+
+    @Test
+    public void testToLog() {
+        printWorkSlot(testWorkSlot1);
+    }
+
+    private void printWorkSlot(WorkSlot workSlot) {
+        Tools.print("[INFO]From WorkSlot Unit Test: ");
+        Tools.print(workSlot.toLog());
+        System.out.println("-----------TEST SEPARATE LINE-----------");
     }
 }

@@ -130,6 +130,15 @@ public class StringUtilsTest {
         Assert.assertEquals(1, result.length);
     }
 
+    //Unit tests for Method: convertLogString
+    @Test
+    public void testConvertLogString() {
+        String[] result;
+        String inputString = "I love Wendy@Wendy loves me";
+        result = StringUtils.convertLogString(inputString);
+        Assert.assertTrue(result.length == 2);
+    }
+
     //Unit tests for Method: convertTimeToNumberFormat
     @Test
     public void testConvertTimeToNumberFormat1() {

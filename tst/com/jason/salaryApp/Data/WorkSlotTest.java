@@ -4,7 +4,6 @@ import com.jason.salaryApp.Utils.Tools;
 import org.junit.Assert;
 import org.junit.Test;
 
-
 public class WorkSlotTest {
 
     WorkSlot testWorkSlot1 = new WorkSlot("11－4", "2018-05-10", "Mon");

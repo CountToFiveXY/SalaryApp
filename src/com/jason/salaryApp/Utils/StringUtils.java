@@ -61,6 +61,11 @@ public class StringUtils {
         return result;
     }
 
+    public static String[] convertLogString(String s) {
+        String[] result = s.split("@");
+        return result;
+    }
+
     public static Float convertTimeToNumberFormat(String timeString) {
         String[] timeArray = convertWorkHourString(timeString);
         if (timeArray.length > 1) {

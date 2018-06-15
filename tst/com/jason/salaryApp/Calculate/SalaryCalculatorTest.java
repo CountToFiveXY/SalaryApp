@@ -2,14 +2,14 @@ package com.jason.salaryApp.Calculate;
 
 import com.jason.salaryApp.Data.SalaryCalculationInput;
 import com.jason.salaryApp.Data.WorkSlot;
+import com.jason.salaryApp.Utils.StringUtils;
+import com.jason.salaryApp.Utils.Tools;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 public class SalaryCalculatorTest {
 
@@ -39,6 +39,13 @@ public class SalaryCalculatorTest {
     @Test
     public void testCalculate() {
         calculator.calculate(input);
-        System.out.println(calculator.log);
+        printLog(calculator.log);
+    }
+
+    private void printLog(String logString) {
+        Tools.print("[INFO]From SalaryCalculator Unit Test: ");
+        String[] divideLog = StringUtils.convertLogString(logString);
+        Arrays.stream(divideLog).forEach(log -> Tools.print(log));
+        System.out.println("-----------TEST SEPARATE LINE-----------");
     }
 }

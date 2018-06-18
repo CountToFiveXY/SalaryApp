@@ -10,7 +10,7 @@ import java.util.List;
 
 public class WorkSlotMapBuilderTest {
     private final WorkSheetFileReader reader = new WorkSheetFileReader();
-    private final WorkSlotMapBuilder builder = new WorkSlotMapBuilder();
+    private final WorkSlotsMapBuilder builder = new WorkSlotsMapBuilder();
 
     @Test
     public void testSetUpWorkSlotMapForEachSheet() {
@@ -24,7 +24,7 @@ public class WorkSlotMapBuilderTest {
     }
 
     private void printMap(HashMap<String, List<WorkSlot>> map) {
-        Tools.print("[INFO]From WorkSlotMapBuilder Unit Test: ");
+        Tools.print("[INFO]From WorkSlotsMapBuilder Unit Test: ");
         map.forEach((personName, workSlots) -> {
             Tools.print(personName + "->" + workSlots.toString());
         });

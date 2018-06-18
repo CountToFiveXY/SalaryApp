@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class WorkSlotMapBuilder {
+public class WorkSlotsMapBuilder {
 
     private ValidWorkSlotPredicate validWorkSlotPredicate = new ValidWorkSlotPredicate();
     private List<String> NonSalaryRowFirstString = Arrays.asList("Date", "WeekDay");

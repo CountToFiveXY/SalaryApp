@@ -1,7 +1,7 @@
 package com.jason.salaryApp.Handler;
 
 import com.jason.salaryApp.Builder.SalaryMapBuilder;
-import com.jason.salaryApp.Builder.WorkSlotMapBuilder;
+import com.jason.salaryApp.Builder.WorkSlotsMapBuilder;
 import com.jason.salaryApp.Calculate.SalaryCalculator;
 import com.jason.salaryApp.Data.SalaryCalculationInput;
 import com.jason.salaryApp.Data.WorkSlot;
@@ -9,6 +9,7 @@ import com.jason.salaryApp.Predicate.ValidSalarySheetPredicate;
 import com.jason.salaryApp.Predicate.ValidWorkTablePredicate;
 import com.jason.salaryApp.Reader.SalaryFileReader;
 import com.jason.salaryApp.Reader.WorkSheetFileReader;
+import com.jason.salaryApp.Utils.Tools;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.nio.file.NoSuchFileException;
@@ -25,27 +26,35 @@ public class SalaryAppHandler {
     @Autowired private WorkSheetFileReader workSheetFileReader;
     @Autowired private SalaryFileReader salaryFileReader;
 
-    @Autowired private WorkSlotMapBuilder workSlotMapBuilder;
+    @Autowired private WorkSlotsMapBuilder workSlotsMapBuilder;
+    @Autowired private WorkSlotsMapFilter workSlotsMapFilter;
     @Autowired private SalaryMapBuilder salaryMapBuilder;
 
     @Autowired private SalaryCalculator salaryCalculator;
 
     //build workSlotMap and SalaryMap separately and build Calculation Input with them.
-    public void buildCalculationInput() throws NoSuchFileException{
-        calculationInput = new SalaryCalculationInput(getWorkSlotsMap(), getSalaryMap());
+    public void buildCalculationInput(String startDateString, String endDateString) throws NoSuchFileException{
+        calculationInput = new SalaryCalculationInput(getWorkSlotsMap(startDateString, endDateString), getSalaryMap());
     }
 
     public void calculateSalary() {
         salaryCalculator.calculate(calculationInput);
     }
 
-    private HashMap<String, List<WorkSlot>> getWorkSlotsMap() {
-        List<List<String[]>> workSheets = getWorkSheets();
+    private HashMap<String, List<WorkSlot>> getWorkSlotsMap(String startDateString, String endDateString) {
+        List<HashMap<String, List<WorkSlot>>> workSlotMaps = getValidWorkSheets()
+                .stream()
+                .map(workSheet -> workSlotsMapBuilder.buildWorkSlotMapForEachSheet(workSheet))
+                .collect(Collectors.toList());
+        workSlotMaps.forEach(workSlotMap -> workSlotsMapFilter.filterWorkSlotsMap(workSlotMap, startDateString, endDateString));
+
         //TODO: Add Logic here
         return new HashMap<>();
     }
 
-    private List<List<String[]>> getWorkSheets() {
+
+
+    private List<List<String[]>> getValidWorkSheets() {
         return workSheetFileReader.getFormalFilesPath()
                 .stream()
                 .map(workSheetFileReader::readWorkSheetFile)

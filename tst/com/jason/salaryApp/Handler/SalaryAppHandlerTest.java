@@ -9,11 +9,9 @@ public class SalaryAppHandlerTest {
 
     @Test
     public void buildCalculationInput() throws NoSuchFileException{
-        handler.buildCalculationInput();
     }
 
     @Test
     public void calculateSalary() {
-        handler.calculateSalary();
     }
 }

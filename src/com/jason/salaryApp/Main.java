@@ -8,7 +8,7 @@ public class Main {
            2. 1 salarySheet txt
 
     Process: workSheetInput ---workSheetFileReader read each sheet---> three raw worksheet data ---> filter By validWorkSheetPredicate(If Any Sheet invalid, break whole program) ---|
-    ******************************                  SalaryAppHandler merge three maps to one WorkSlotMap <---WorkSlotMapBuilder build map for each data--- three valid raw worksheet data <---|
+    ******************************                  SalaryAppHandler merge three maps to one WorkSlotMap <---WorkSlotsMapBuilder build map for each data--- three valid raw worksheet data <---|
      */
 
     public static void main(String[] args) {

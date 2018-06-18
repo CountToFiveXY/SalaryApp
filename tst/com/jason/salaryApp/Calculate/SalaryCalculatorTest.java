@@ -45,7 +45,7 @@ public class SalaryCalculatorTest {
     private void printLog(String logString) {
         Tools.print("[INFO]From SalaryCalculator Unit Test: ");
         String[] divideLog = StringUtils.convertLogString(logString);
-        Arrays.stream(divideLog).forEach(log -> Tools.print(log));
+        Arrays.stream(divideLog).forEach(Tools::print);
         System.out.println("-----------TEST SEPARATE LINE-----------");
     }
 }

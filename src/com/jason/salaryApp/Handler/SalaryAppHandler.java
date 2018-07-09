@@ -9,7 +9,7 @@ import com.jason.salaryApp.Predicate.ValidSalarySheetPredicate;
 import com.jason.salaryApp.Predicate.ValidWorkTablePredicate;
 import com.jason.salaryApp.Reader.SalaryFileReader;
 import com.jason.salaryApp.Reader.WorkSheetFileReader;
-import com.jason.salaryApp.Utils.Tools;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.nio.file.NoSuchFileException;
@@ -28,6 +28,7 @@ public class SalaryAppHandler {
 
     @Autowired private WorkSlotsMapBuilder workSlotsMapBuilder;
     @Autowired private WorkSlotsMapFilter workSlotsMapFilter;
+    @Autowired private WorkSlotsMapCombiner workSlotsMapCombiner;
     @Autowired private SalaryMapBuilder salaryMapBuilder;
 
     @Autowired private SalaryCalculator salaryCalculator;
@@ -48,10 +49,8 @@ public class SalaryAppHandler {
                 .collect(Collectors.toList());
         workSlotMaps.forEach(workSlotMap -> workSlotsMapFilter.filterWorkSlotsMap(workSlotMap, startDateString, endDateString));
 
-        //TODO: Add Logic here
-        return new HashMap<>();
+        return workSlotsMapCombiner.combineWorkSlotsMap(workSlotMaps);
     }
-
 
 
     private List<List<String[]>> getValidWorkSheets() {

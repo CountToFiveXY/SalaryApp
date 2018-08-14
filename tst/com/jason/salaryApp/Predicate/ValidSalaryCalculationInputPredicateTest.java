@@ -40,6 +40,13 @@ public class ValidSalaryCalculationInputPredicateTest {
         assertFalse(result);
     }
 
+    @Test
+    public void testGetUnSalariedPeopleNameForBadInput() {
+        AddWorkSlotMap("Tina");
+        List<String> unSalaried = predicate.getUnSalariedPeopleName(input);
+        assertTrue(unSalaried.contains("Tina"));
+    }
+
     private void AddWorkSlotMap(String personName) {
         workSlotsMap.put(personName, new ArrayList<>());
     }

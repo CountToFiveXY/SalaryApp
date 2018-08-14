@@ -25,13 +25,12 @@ public class SalaryCalculator {
         });
     }
 
-    private double calculateWholeSalaryForThisPerson(List<WorkSlot> workSlotsForThisPerson, Float salaryPerHour) {
-        workSlotsForThisPerson.forEach(workSlot -> logEachWorkSlot(workSlot));
-        Double totalSalary = totalWorkHour * salaryPerHour;
+    private void calculateWholeSalaryForThisPerson(List<WorkSlot> workSlotsForThisPerson, Float salaryPerHour) {
+        workSlotsForThisPerson.forEach(this::logEachWorkSlot);
+        double totalSalary = totalWorkHour * salaryPerHour;
         String sumSalaryLog = String.format("Salary: %.2f($/h) X %.2f(h) = $%.2f",salaryPerHour,totalWorkHour,totalSalary);
         resetTotalWorkHour();
         AddToLog(sumSalaryLog);
-        return totalSalary;
     }
 
     private void logEachWorkSlot(WorkSlot workSlot) {

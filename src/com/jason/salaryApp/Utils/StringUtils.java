@@ -18,10 +18,6 @@ public class StringUtils {
         }
     }
 
-    public static int toInteger(String s){
-        return Integer.parseInt(s);
-    }
-
     public static float toFloat(String s) {
         return Float.parseFloat(s);
     }
@@ -31,13 +27,11 @@ public class StringUtils {
     }
 
     public static String[] convertCsvRowString(String s) {
-        String[] result =  s.split(",");
-        return result;
+        return s.split(",");
     }
 
     public static String[] convertDateString(String s) {
-        String[] result = s.split("-");
-        return result;
+        return s.split("-");
     }
 
     public static String[] convertWorkSlotString(String s) {
@@ -57,31 +51,52 @@ public class StringUtils {
     }
 
     public static String[] convertSalaryString(String s) {
-        String[] result = s.split("-");
-        return result;
+        return s.split("-");
     }
 
     public static String[] convertLogString(String s) {
-        String[] result = s.split("@");
-        return result;
+        return s.split("@");
     }
 
-    public static Float convertTimeToNumberFormat(String timeString) {
+    public static float convertTimeToNumberFormat(String timeString) {
         String[] timeArray = convertWorkHourString(timeString);
         if (timeArray.length > 1) {
             int hour = toInteger(timeArray[0]);
             float minute = toInteger(timeArray[1])/60f;
             return hour + minute;
         }
-        return (Float) toFloat(timeArray[0]);
+        return toFloat(timeArray[0]);
     }
 
-    public static String removeBlankPrefix(String s) {
+    public static String correctDate (String date) {
+        String[] dateArray = StringUtils.convertDateString(date);
+        String modifiedDate = "";
+        int len = dateArray.length;
+
+        for(int i = 0; i < len; i ++){
+            String s = dateArray[i];
+            if (s.length() == 1){
+                s = "0" + s;
+            }
+            if (i >= len-1) {
+                modifiedDate += s;
+            }else{
+                modifiedDate += s + "-";
+            }
+        }
+        return modifiedDate;
+    }
+
+
+    public static String removeBlankPrefixAndSuffix(String s) {
         if (isBlank(s)) {
             return null;
         }
         while (s.startsWith(" ")) {
            s = s.substring(1);
+        }
+        while (s.endsWith(" ")) {
+            s = s.substring(0, s.length()-1);
         }
         return s;
     }
@@ -97,5 +112,9 @@ public class StringUtils {
             }
         }
         return true;
+    }
+
+    private static int toInteger(String s){
+        return Integer.parseInt(s);
     }
 }

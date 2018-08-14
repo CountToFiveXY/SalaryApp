@@ -5,12 +5,12 @@ import com.jason.salaryApp.Builder.WorkSlotsMapBuilder;
 import com.jason.salaryApp.Calculate.SalaryCalculator;
 import com.jason.salaryApp.Data.SalaryCalculationInput;
 import com.jason.salaryApp.Data.WorkSlot;
+import com.jason.salaryApp.Predicate.ValidSalaryCalculationInputPredicate;
 import com.jason.salaryApp.Predicate.ValidSalarySheetPredicate;
 import com.jason.salaryApp.Predicate.ValidWorkTablePredicate;
 import com.jason.salaryApp.Reader.SalaryFileReader;
 import com.jason.salaryApp.Reader.WorkSheetFileReader;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import com.jason.salaryApp.Utils.Tools;
 
 import java.nio.file.NoSuchFileException;
 import java.util.HashMap;
@@ -20,26 +20,34 @@ import java.util.stream.Collectors;
 public class SalaryAppHandler {
 
     private SalaryCalculationInput calculationInput;
-    @Autowired private ValidWorkTablePredicate workSheetPredicate;
-    @Autowired private ValidSalarySheetPredicate salarySheetPredicate;
 
-    @Autowired private WorkSheetFileReader workSheetFileReader;
-    @Autowired private SalaryFileReader salaryFileReader;
+    //two predicate
+    private ValidWorkTablePredicate workSheetPredicate = new ValidWorkTablePredicate();
+    private ValidSalarySheetPredicate salarySheetPredicate = new ValidSalarySheetPredicate();
+    private ValidSalaryCalculationInputPredicate salaryCalculationInputPredicate = new ValidSalaryCalculationInputPredicate();
 
-    @Autowired private WorkSlotsMapBuilder workSlotsMapBuilder;
-    @Autowired private WorkSlotsMapFilter workSlotsMapFilter;
-    @Autowired private WorkSlotsMapCombiner workSlotsMapCombiner;
-    @Autowired private SalaryMapBuilder salaryMapBuilder;
+    //two reader
+    private WorkSheetFileReader workSheetFileReader = new WorkSheetFileReader();
+    private SalaryFileReader salaryFileReader = new SalaryFileReader();
 
-    @Autowired private SalaryCalculator salaryCalculator;
+    //builder and filter
+    private WorkSlotsMapBuilder workSlotsMapBuilder = new WorkSlotsMapBuilder();
+    private WorkSlotsMapFilter workSlotsMapFilter = new WorkSlotsMapFilter();
+    private WorkSlotsMapCombiner workSlotsMapCombiner = new WorkSlotsMapCombiner();
+    private SalaryMapBuilder salaryMapBuilder = new SalaryMapBuilder();
+
+    //calculator
+    private SalaryCalculator salaryCalculator = new SalaryCalculator();
 
     //build workSlotMap and SalaryMap separately and build Calculation Input with them.
     public void buildCalculationInput(String startDateString, String endDateString) throws NoSuchFileException{
         calculationInput = new SalaryCalculationInput(getWorkSlotsMap(startDateString, endDateString), getSalaryMap());
     }
 
-    public void calculateSalary() {
+    public String calculateSalary() {
+        Tools.checkArgument(salaryCalculationInputPredicate.test(calculationInput), "Some people in workSheet are not in SalaryFile -> " + salaryCalculationInputPredicate.getUnSalariedPeopleName(calculationInput));
         salaryCalculator.calculate(calculationInput);
+        return salaryCalculator.log;
     }
 
     private HashMap<String, List<WorkSlot>> getWorkSlotsMap(String startDateString, String endDateString) {

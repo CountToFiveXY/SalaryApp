@@ -21,8 +21,15 @@ public class ValidDatePredicateTest {
     }
 
     @Test
-    public void testUnValidDateString() {
+    public void testUnValidDateString1() {
         String date = "2018－01－07";
+        boolean result = predicate.test(date);
+        assertFalse(result);
+    }
+
+    @Test
+    public void testUnValidDateString2() {
+        String date = "2018-1-07";
         boolean result = predicate.test(date);
         assertFalse(result);
     }

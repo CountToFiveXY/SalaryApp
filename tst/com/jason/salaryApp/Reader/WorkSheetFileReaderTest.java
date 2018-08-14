@@ -80,6 +80,6 @@ public class WorkSheetFileReaderTest {
     private void printWorkSheet(List<String[]> workSheet) {
         Tools.print("[INFO]From WorkSheetFileReader Unit Test: ");
         workSheet.forEach(row -> System.out.println(Arrays.toString(row)));
-        System.out.println("-----------TEST SEPARATE LINE-----------");
+        Tools.print("-----------TEST SEPARATE LINE-----------");
     }
 }

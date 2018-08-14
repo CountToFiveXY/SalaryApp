@@ -156,12 +156,13 @@ public class StringUtilsTest {
         Assert.assertTrue(result == 5);
     }
 
-    //Unit tests For Method: removeBlankPrefix
+    //Unit tests For Method: removeBlankPrefixAndSuffix
     @Test
     public void testRemoveBlankPrefix() {
-        Assert.assertNull(StringUtils.removeBlankPrefix(" "));
-        Assert.assertNull(StringUtils.removeBlankPrefix(null));
-        Assert.assertEquals("someString", StringUtils.removeBlankPrefix("   someString"));
+        Assert.assertNull(StringUtils.removeBlankPrefixAndSuffix(" "));
+        Assert.assertNull(StringUtils.removeBlankPrefixAndSuffix(null));
+        Assert.assertEquals("someString", StringUtils.removeBlankPrefixAndSuffix("   someString"));
+        Assert.assertEquals("someString", StringUtils.removeBlankPrefixAndSuffix("   someString     "));
     }
 
     private void printResult(String[] result) {

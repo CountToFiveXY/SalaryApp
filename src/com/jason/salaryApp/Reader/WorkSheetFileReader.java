@@ -30,7 +30,7 @@ public class WorkSheetFileReader {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] rowContent = StringUtils.convertCsvRowString(line);
-                Tools.checkArgument(checkRowValidation(line, rowContent), "[ERROR!] Bad Table row:" + line);
+                Tools.checkArgument(checkRowValidation(line, rowContent), "[ERROR!] This row has 15+ columns:" + line);
                 workSheet.add(modifyEachRow(rowContent));
             }
         } catch (IOException e){
@@ -45,7 +45,7 @@ public class WorkSheetFileReader {
                 .collect(Collectors.toList());
     }
 
-    public List<String[]> getTestWorkSheet() {
+    List<String[]> getTestWorkSheet() {
         return readWorkSheetFile(TEST_WORKSHEET_FILE_PATH + "1.csv");
     }
 
@@ -59,7 +59,7 @@ public class WorkSheetFileReader {
         Arrays.fill(modifiedRow, 0, COLUMN, X);
 
         for (int i = 0; i < rowContent.length; i++) {
-            modifiedRow[i] = StringUtils.isNotBlank(rowContent[i])? StringUtils.removeBlankPrefix(rowContent[i]) : X;
+            modifiedRow[i] = StringUtils.isNotBlank(rowContent[i])? StringUtils.removeBlankPrefixAndSuffix(rowContent[i]) : X;
         }
 
         boolean isDateOrWeekDayRow = modifiedRow[0].equals(DATE_STRING) || modifiedRow[0].equals(WEEKDAY_STRING);
@@ -74,6 +74,7 @@ public class WorkSheetFileReader {
         for (int i = 2; i < rowContent.length; i+=2) {
             rowContent[i] = rowContent[i-1];
         }
+
     }
 
     private boolean checkRowValidation(String line, String[] rowContext) {

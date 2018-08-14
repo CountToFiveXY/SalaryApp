@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SalaryFileReader {
-    public static final String SALARY_FILE_PATH = "test_salary_good.txt";
+    public static final String SALARY_FILE_PATH = "salary.txt";
     public static final String TEST_SALARY_FILE_PATH = "resources/testInput/";
 
     public List<String[]> readSalaryFile (String fileName) throws NoSuchFileException{

@@ -12,7 +12,7 @@ public class ValidWorkTablePredicate {
     /*
     Valid WorkSheet passed from WorkSheetFileReader should be like this
     1. 15 column sheet
-    2. first row: Date, 2018-4-16, 2018-4-16, 2018-4-17... 2018-4-22, 2018-4-22
+    2. first row: Date, 2018-04-16, 2018-04-16, 2018-04-17... 2018-04-22, 2018-04-23
     3 .Second Row: WeekDay, Mon, Mon, Tue, Tue... Sun, Sun
     4 .Each slot should have value
     5. All other rows should not start with X and must have valid workSlot String.

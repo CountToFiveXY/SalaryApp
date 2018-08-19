@@ -52,7 +52,7 @@ public class ValidWorkTablePredicate {
                 .filter(s -> !s.equals("Date"))
                 .allMatch(new ValidDatePredicate());
         if (!flag)
-            throw new IllegalArgumentException("[ERROR] Bad Date Row");
+            throw new IllegalArgumentException("[ERROR] Bad Date Row" + Arrays.asList(workSheet.get(0)));
         return true;
     }
 

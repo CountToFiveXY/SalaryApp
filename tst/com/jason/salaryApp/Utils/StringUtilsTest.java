@@ -165,6 +165,12 @@ public class StringUtilsTest {
         Assert.assertEquals("someString", StringUtils.removeBlankPrefixAndSuffix("   someString     "));
     }
 
+    //Unit tests For Method: correctDate
+    @Test
+    public void testCorrectDate() {
+        Assert.assertEquals("2018-07-01", StringUtils.correctDate("2018-7-1"));
+    }
+
     private void printResult(String[] result) {
         System.out.println(Arrays.toString(result));
     }

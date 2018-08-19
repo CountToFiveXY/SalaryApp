@@ -75,6 +75,10 @@ public class WorkSheetFileReader {
             rowContent[i] = rowContent[i-1];
         }
 
+        //TODO: modify it
+        for (int i = 1; i < rowContent.length; i++) {
+            rowContent[i] = StringUtils.correctDate(rowContent[i]);
+        }
     }
 
     private boolean checkRowValidation(String line, String[] rowContext) {

@@ -27,14 +27,13 @@ public class WorkSheetFileReaderTest {
     @Test
     public void testConvertInputCSVFileToArrayForTestInput3() {
         List<String[]> result = reader.readWorkSheetFile(WorkSheetFileReader.TEST_WORKSHEET_FILE_PATH + "3.csv");
-        Assert.assertEquals("2018-4-30", result.get(0)[1]);
+        Assert.assertEquals("2018-04-30", result.get(0)[1]);
         printWorkSheet(result);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testConvertInputCSVFileToArrayForTestInputBad() {
         List<String[]> result = reader.readWorkSheetFile(WorkSheetFileReader.TEST_WORKSHEET_FILE_PATH + "bad.csv");
-        Assert.assertEquals("2018-4-23", result.get(0)[1]);
         printWorkSheet(result);
     }
 

@@ -3,6 +3,7 @@ package com.jason.salaryApp.Utils;
 import com.jason.salaryApp.Exceptions.WrongDateFormatException;
 import lombok.NonNull;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -11,10 +12,13 @@ public class Tools {
 
     public static final String LOG_SEPARATOR = "@";
 
-    public static String getCurrentTime () {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+    public static String getLocalTime() {
         Date date = new Date();
-        return format.format(date).toString();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String[] timeArray = dateFormat.format(date).split("-");
+        String year = timeArray[0];
+        String month = timeArray[1];
+        return year + "-" + month + "-";
     }
 
     public static boolean isBetweenTwoDays (String date, String start, String end) {

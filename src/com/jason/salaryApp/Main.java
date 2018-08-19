@@ -1,5 +1,7 @@
 package com.jason.salaryApp;
 
+import com.jason.salaryApp.Builder.GUIBuilder;
+
 public class Main {
 
     /*
@@ -13,5 +15,7 @@ public class Main {
 
     public static void main(String[] args) {
 	// write your code here
+        GUIBuilder guiBuilder = new GUIBuilder();
+        guiBuilder.buildGUI();
     }
 }

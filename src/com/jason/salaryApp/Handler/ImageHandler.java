@@ -16,7 +16,7 @@ public class ImageHandler {
         printNewImage(imagePath);
     }
 
-    public JLabel setBackGroundImageLabel () {
+    public JLabel createBackGroundImageLabel() {
         ImageIcon background = new ImageIcon(IMAGE_PATH);
         JLabel label = new JLabel(background);
         label.setBounds(0,0,background.getIconWidth(),background.getIconHeight());

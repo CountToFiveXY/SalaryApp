@@ -29,7 +29,7 @@ public class GUIBuilder {
         jf = new JFrame(KFT_VERSION_STRING);
         jpanel = (JPanel)jf.getContentPane();
 
-        buildGUIWithBGImage(jf);
+        buildGUIWithBGImage();
         setUpJPanel();
 
         //create 4 labels
@@ -53,10 +53,10 @@ public class GUIBuilder {
         setUpJFrame();
     }
 
-    private void buildGUIWithBGImage(JFrame jFrame) {
+    private void buildGUIWithBGImage() {
         //背景图片处理
-        JLabel bgLabel = imageHandler.setBackGroundImageLabel();
-        jFrame.getLayeredPane().add(bgLabel, new Integer(Integer.MIN_VALUE));
+        JLabel bgLabel = imageHandler.createBackGroundImageLabel();
+        jf.getLayeredPane().add(bgLabel, new Integer(Integer.MIN_VALUE));
     }
 
     private void setUpJPanel() {

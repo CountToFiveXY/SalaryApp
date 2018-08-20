@@ -12,32 +12,36 @@ public class SalaryCalculator {
     public String log = "";
     private double totalWorkHour = 0.0;
 
-    public void calculate(SalaryCalculationInput input) {
-        Map<String, List<WorkSlot>> workSlotsMap = input.getWorkSlotMap();
-        Map<String, Float> salaryMap = input.getSalaryMap();
-
-        workSlotsMap.keySet().forEach(personName -> {
-            String personInfoLog = String.format("Salary Info For %s:", personName);
-            AddToLog(personInfoLog);
-            List<WorkSlot> workSlotsForThisPerson = workSlotsMap.get(personName);
-            Float salaryPerHour = salaryMap.get(personName);
-            calculateWholeSalaryForThisPerson(workSlotsForThisPerson, salaryPerHour);
+    public void calculateForAll(SalaryCalculationInput input) {
+        input.getWorkSlotMap().keySet().forEach(personName -> {
+            calculateSalaryForOnePerson(input, personName);
         });
     }
 
-    private void calculateWholeSalaryForThisPerson(List<WorkSlot> workSlotsForThisPerson, Float salaryPerHour) {
-        workSlotsForThisPerson.forEach(this::logEachWorkSlot);
+    public void calculateSalaryForOnePerson(SalaryCalculationInput input, String personName) {
+        Map<String, List<WorkSlot>> workSlotsMap = input.getWorkSlotMap();
+        Map<String, Float> salaryMap = input.getSalaryMap();
+
+        String personInfoLog = String.format("Salary For %s:", personName);
+        AddToLog(personInfoLog);
+
+        List<WorkSlot> workSlotsForThisPerson = workSlotsMap.get(personName);
+        Float salaryPerHour = salaryMap.get(personName);
+
+        workSlotsForThisPerson.forEach(this::logEachWorkSlotAndTotalHour);
         double totalSalary = totalWorkHour * salaryPerHour;
         String sumSalaryLog = String.format("Salary: %.2f($/h) X %.2f(h) = $%.2f",salaryPerHour,totalWorkHour,totalSalary);
         resetTotalWorkHour();
         AddToLog(sumSalaryLog);
     }
 
-    private void logEachWorkSlot(WorkSlot workSlot) {
+    private void logEachWorkSlotAndTotalHour(WorkSlot workSlot) {
         double workTime = workSlot.getWorkTime();
         double preWorkHour = totalWorkHour;
         totalWorkHour += workTime;
-        String proceedWorkSlotLog = String.format("%s, Total WorkHour: %.1f + %.1f = %.1f hours.", workSlot.toLog(), preWorkHour, workTime, totalWorkHour);
+        String proceedWorkSlotLog = String.format(
+                "%s, Total WorkHour: %.1f + %.1f = %.1f hours."
+                , workSlot.toLog(), preWorkHour, workTime, totalWorkHour);
         AddToLog(proceedWorkSlotLog);
     }
 

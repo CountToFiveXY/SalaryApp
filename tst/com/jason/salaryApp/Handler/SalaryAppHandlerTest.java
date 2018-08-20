@@ -15,7 +15,7 @@ public class SalaryAppHandlerTest {
         String startDate = "2018-07-20";
         String endDate = "2018-07-30";
         handler.buildCalculationInput(startDate, endDate);
-        String log = handler.calculateSalary();
+        String log = handler.calculateSalaryForAll();
         printLog(log);
     }
 

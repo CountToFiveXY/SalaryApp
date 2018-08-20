@@ -20,11 +20,15 @@ public class SalaryAppHandler {
     //build workSlotMap and SalaryMap separately and build Calculation Input with them.
     public void buildCalculationInput(String startDateString, String endDateString) throws NoSuchFileException{
         calculationInput = inputBuilder.buildCalculationInput(startDateString, endDateString);
+        Tools.checkArgument(salaryCalculationInputPredicate.test(calculationInput), "Some people in workSheet are not in SalaryFile -> " + salaryCalculationInputPredicate.getUnSalariedPeopleName(calculationInput));
     }
 
-    public String calculateSalary() {
-        Tools.checkArgument(salaryCalculationInputPredicate.test(calculationInput), "Some people in workSheet are not in SalaryFile -> " + salaryCalculationInputPredicate.getUnSalariedPeopleName(calculationInput));
-        salaryCalculator.calculate(calculationInput);
+    public String calculateSalaryForAll() {
+        salaryCalculator.calculateForAll(calculationInput);
         return salaryCalculator.log;
+    }
+
+    public String calculateSalaryForOne() {
+        return null;
     }
 }

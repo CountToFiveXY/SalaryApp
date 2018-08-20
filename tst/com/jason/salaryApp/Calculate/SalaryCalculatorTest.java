@@ -37,8 +37,14 @@ public class SalaryCalculatorTest {
     }
 
     @Test
-    public void testCalculate() {
-        calculator.calculate(input);
+    public void testCalculateForAll() {
+        calculator.calculateForAll(input);
+        printLog(calculator.log);
+    }
+
+    @Test
+    public void testCalculateForOne() {
+        calculator.calculateSalaryForOnePerson(input, personName);
         printLog(calculator.log);
     }
 

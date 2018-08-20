@@ -29,7 +29,9 @@ public class SalaryAppHandler {
         return salaryCalculator.log;
     }
 
-    public String calculateSalaryForOne() {
-        return null;
+    public String calculateSalaryForOne(String personName) {
+        Tools.checkArgument(calculationInput.getWorkSlotMap().containsKey(personName), "This person is not in workSheet");
+        salaryCalculator.calculateSalaryForOnePerson(calculationInput, personName);
+        return salaryCalculator.log;
     }
 }

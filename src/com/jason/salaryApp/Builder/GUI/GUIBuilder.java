@@ -17,8 +17,8 @@ public class GUIBuilder {
     private final static String LABEL_END_DATE = "结束日期:";
     private final static String LABEL3 = "员工姓名:";
     private final static String LOAD_BUTTON = "加载表格";
-    private final static String BUTTON2 = "一键查询";
-    private final static String BUTTON3 = "查询";
+    private final static String ALL_SEARCH_BUTTON = "一键查询";
+    private final static String SINGLE_SEARCH_BUTTON = "查询";
     private final static String ORIGINAL_IMAGE_PATH = "resources/1.jpg";
 
     private JFrame jf;
@@ -46,13 +46,13 @@ public class GUIBuilder {
         nameText = createTextWindow(null,95,145,60,30);
 
         //三个按钮
-        JButton load, singleSearch, superSearch;
+        JButton load, allSearch, singleSearch;
         load = createButton(LOAD_BUTTON, Color.white, 20, 102, 100, 35);
         buttonBuilder.initializeLoadButton(load, fromText, toText);
-        superSearch = createButton(BUTTON2, Color.white, 125,102,100,35);
-        singleSearch = createButton(BUTTON3, Color.white, 165,144,60,30);
-
-
+        allSearch = createButton(ALL_SEARCH_BUTTON, Color.white, 125,102,100,35);
+        buttonBuilder.initializeAllSearchButton(allSearch);
+        singleSearch = createButton(SINGLE_SEARCH_BUTTON, Color.white, 165,144,60,30);
+        buttonBuilder.initializeSingleSearchButton(singleSearch, nameText);
 
         setUpJFrame();
     }

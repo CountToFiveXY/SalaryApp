@@ -55,7 +55,7 @@ public class StringUtils {
     }
 
     public static String[] convertLogString(String s) {
-        return s.split("@");
+        return s.split(Tools.LOG_SEPARATOR);
     }
 
     public static float convertTimeToNumberFormat(String timeString) {

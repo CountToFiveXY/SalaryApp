@@ -76,8 +76,10 @@ public class WorkSheetFileReader {
         }
 
         //TODO: modify it
-        for (int i = 1; i < rowContent.length; i++) {
-            rowContent[i] = StringUtils.correctDate(rowContent[i]);
+        if (rowContent[0].equals(DATE_STRING)) {
+            for (int i = 1; i < rowContent.length; i++) {
+                rowContent[i] = Tools.formatDate(rowContent[i]);
+            }
         }
     }
 

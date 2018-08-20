@@ -28,10 +28,7 @@ public class SalaryCalculator {
         List<WorkSlot> workSlotsForThisPerson = workSlotsMap.get(personName);
         Float salaryPerHour = salaryMap.get(personName);
 
-        //apply workSlot log only for single Search
-        if (isSingleSearch) {
-            workSlotsForThisPerson.forEach(this::logEachWorkSlotAndTotalHour);
-        }
+        workSlotsForThisPerson.forEach(workSlot -> logEachWorkSlotAndTotalHour(workSlot, isSingleSearch));
 
         double totalSalary = totalWorkHour * salaryPerHour;
         String sumSalaryLog = String.format("%.2f(h) X %.2f($/h) = $%.2f",totalWorkHour, salaryPerHour, totalSalary);
@@ -39,14 +36,18 @@ public class SalaryCalculator {
         AddToLog(sumSalaryLog);
     }
 
-    private void logEachWorkSlotAndTotalHour(WorkSlot workSlot) {
+    private void logEachWorkSlotAndTotalHour(WorkSlot workSlot, boolean isSingleSearch) {
         double workTime = workSlot.getWorkTime();
         double preWorkHour = totalWorkHour;
         totalWorkHour += workTime;
         String proceedWorkSlotLog = String.format(
                 "%s, Total WorkHour: %.1f + %.1f = %.1f hours."
                 , workSlot.toLog(), preWorkHour, workTime, totalWorkHour);
-        AddToLog(proceedWorkSlotLog);
+
+        //apply log only for single Search
+        if (isSingleSearch) {
+            AddToLog(proceedWorkSlotLog);
+        }
     }
 
     private void AddToLog(String logString) {

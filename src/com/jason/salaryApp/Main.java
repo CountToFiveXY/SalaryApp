@@ -1,6 +1,6 @@
 package com.jason.salaryApp;
 
-import com.jason.salaryApp.Builder.GUIBuilder;
+import com.jason.salaryApp.Builder.GUI.GUIBuilder;
 
 public class Main {
 

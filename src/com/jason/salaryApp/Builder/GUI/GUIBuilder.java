@@ -1,4 +1,4 @@
-package com.jason.salaryApp.Builder;
+package com.jason.salaryApp.Builder.GUI;
 
 import com.jason.salaryApp.Handler.ImageHandler;
 import com.jason.salaryApp.Utils.Tools;
@@ -16,7 +16,7 @@ public class GUIBuilder {
     private final static String LABEL_START_DATE = "开始日期:";
     private final static String LABEL_END_DATE = "结束日期:";
     private final static String LABEL3 = "员工姓名:";
-    private final static String BUTTON1 = "加载表格";
+    private final static String LOAD_BUTTON = "加载表格";
     private final static String BUTTON2 = "一键查询";
     private final static String BUTTON3 = "查询";
     private final static String ORIGINAL_IMAGE_PATH = "resources/1.jpg";
@@ -24,6 +24,7 @@ public class GUIBuilder {
     private JFrame jf;
     private JPanel jpanel;
     private ImageHandler imageHandler = new ImageHandler(ORIGINAL_IMAGE_PATH);
+    private JButtonBuilder buttonBuilder = new JButtonBuilder();
 
     public void buildGUI() {
         jf = new JFrame(KFT_VERSION_STRING);
@@ -45,10 +46,13 @@ public class GUIBuilder {
         nameText = createTextWindow(null,95,145,60,30);
 
         //三个按钮
-        JButton find, singleSearch, superSearch;
-        find = createButton(BUTTON1, Color.white, 20, 102, 100, 35);
+        JButton load, singleSearch, superSearch;
+        load = createButton(LOAD_BUTTON, Color.white, 20, 102, 100, 35);
+        buttonBuilder.initializeLoadButton(load, fromText, toText);
         superSearch = createButton(BUTTON2, Color.white, 125,102,100,35);
         singleSearch = createButton(BUTTON3, Color.white, 165,144,60,30);
+
+
 
         setUpJFrame();
     }

@@ -18,9 +18,10 @@ public class SalaryAppHandler {
     private SalaryCalculator salaryCalculator = new SalaryCalculator();
 
     //build workSlotMap and SalaryMap separately and build Calculation Input with them.
-    public void buildCalculationInput(String startDateString, String endDateString) throws NoSuchFileException{
+    public SalaryCalculationInput buildCalculationInput(String startDateString, String endDateString) throws NoSuchFileException{
         calculationInput = inputBuilder.buildCalculationInput(startDateString, endDateString);
         Tools.checkArgument(salaryCalculationInputPredicate.test(calculationInput), "Some people in workSheet are not in SalaryFile -> " + salaryCalculationInputPredicate.getUnSalariedPeopleName(calculationInput));
+        return calculationInput;
     }
 
     public String calculateSalaryForAll() {

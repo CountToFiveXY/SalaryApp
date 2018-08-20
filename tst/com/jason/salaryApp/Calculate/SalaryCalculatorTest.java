@@ -44,7 +44,7 @@ public class SalaryCalculatorTest {
 
     @Test
     public void testCalculateForOne() {
-        calculator.calculateSalaryForOnePerson(input, personName);
+        calculator.calculateSalaryForOnePerson(input, personName, true);
         printLog(calculator.log);
     }
 

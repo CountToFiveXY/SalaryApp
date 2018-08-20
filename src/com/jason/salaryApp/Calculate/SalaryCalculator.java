@@ -14,23 +14,27 @@ public class SalaryCalculator {
 
     public void calculateForAll(SalaryCalculationInput input) {
         input.getWorkSlotMap().keySet().forEach(personName -> {
-            calculateSalaryForOnePerson(input, personName);
+            calculateSalaryForOnePerson(input, personName, false);
         });
     }
 
-    public void calculateSalaryForOnePerson(SalaryCalculationInput input, String personName) {
+    public void calculateSalaryForOnePerson(SalaryCalculationInput input, String personName, boolean isSingleSearch) {
         Map<String, List<WorkSlot>> workSlotsMap = input.getWorkSlotMap();
         Map<String, Float> salaryMap = input.getSalaryMap();
 
-        String personInfoLog = String.format("Salary For %s:", personName);
+        String personInfoLog = String.format("%s该时段总工资为:", personName);
         AddToLog(personInfoLog);
 
         List<WorkSlot> workSlotsForThisPerson = workSlotsMap.get(personName);
         Float salaryPerHour = salaryMap.get(personName);
 
-        workSlotsForThisPerson.forEach(this::logEachWorkSlotAndTotalHour);
+        //apply workSlot log only for single Search
+        if (isSingleSearch) {
+            workSlotsForThisPerson.forEach(this::logEachWorkSlotAndTotalHour);
+        }
+
         double totalSalary = totalWorkHour * salaryPerHour;
-        String sumSalaryLog = String.format("Salary: %.2f($/h) X %.2f(h) = $%.2f",salaryPerHour,totalWorkHour,totalSalary);
+        String sumSalaryLog = String.format("%.2f(h) X %.2f($/h) = $%.2f",totalWorkHour, salaryPerHour, totalSalary);
         resetTotalWorkHour();
         AddToLog(sumSalaryLog);
     }

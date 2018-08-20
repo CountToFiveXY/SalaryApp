@@ -4,6 +4,7 @@ import com.jason.salaryApp.Data.SalaryCalculationInput;
 import com.jason.salaryApp.Handler.SalaryAppHandler;
 import com.jason.salaryApp.Utils.StringUtils;
 import com.jason.salaryApp.Utils.Tools;
+import com.jason.salaryApp.Writer.LogWriter;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -47,9 +48,7 @@ public class JButtonBuilder {
         allSearch.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String logForAll = appHandler.calculateSalaryForAll();
-                String[] divideLog = StringUtils.convertLogString(logForAll);
-                Arrays.stream(divideLog).forEach(Tools::print);
+                LogWriter.writeLogs(appHandler.calculateSalaryForAll());
             }
         });
     }
@@ -62,10 +61,8 @@ public class JButtonBuilder {
                 String personName = nameText.getText();
 
                 if (StringUtils.isNotBlank(personName)) {
-                    buttonMessage = "查询"+ personName +"的工资";
-                    String logForAll = appHandler.calculateSalaryForOne(personName);
-                    String[] divideLog = StringUtils.convertLogString(logForAll);
-                    Arrays.stream(divideLog).forEach(Tools::print);
+                    buttonMessage = "查询" + personName + "的工资";
+                    LogWriter.writeLogs(appHandler.calculateSalaryForOne(personName));
                 } else {
                     buttonMessage = "二货忘了输入名字";
                 }

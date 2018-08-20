@@ -31,7 +31,7 @@ public class SalaryAppHandler {
 
     public String calculateSalaryForOne(String personName) {
         Tools.checkArgument(calculationInput.getWorkSlotMap().containsKey(personName), "This person is not in workSheet");
-        salaryCalculator.calculateSalaryForOnePerson(calculationInput, personName);
+        salaryCalculator.calculateSalaryForOnePerson(calculationInput, personName, true);
         return salaryCalculator.log;
     }
 }

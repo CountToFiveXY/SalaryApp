@@ -45,7 +45,6 @@ public class CalculationInputBuilder {
         return workSlotsMapCombiner.combineWorkSlotsMap(workSlotMaps);
     }
 
-
     private List<List<String[]>> getValidWorkSheets() {
         return workSheetFileReader.getFormalFilesPath()
                 .stream()

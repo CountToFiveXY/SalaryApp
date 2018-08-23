@@ -15,6 +15,7 @@ public class SalaryCalculatorTest {
 
     private static final String personName = "Jason";
     private static final String personName2 = "Jason2";
+    private static final String personName3 = "JING WEN";
     private static final Float salary = 8.0f;
     private final WorkSlot workSlot1 = new WorkSlot("11－4", "2018-05-10", "Mon");
     private final WorkSlot workSlot2 = new WorkSlot("9:30－5", "2018-05-11", "Tue");
@@ -30,6 +31,7 @@ public class SalaryCalculatorTest {
     public void setUp() {
         workSlotMap.put(personName, workSlots);
         workSlotMap.put(personName2, workSlots);
+        workSlotMap.put(personName3, workSlots);
         salaryMap.put(personName, salary);
         salaryMap.put(personName2, salary);
         input = new SalaryCalculationInput(workSlotMap, salaryMap);

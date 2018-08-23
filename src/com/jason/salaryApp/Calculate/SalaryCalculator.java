@@ -5,12 +5,15 @@ import com.jason.salaryApp.Data.SalaryCalculationInput;
 import com.jason.salaryApp.Data.WorkSlot;
 import com.jason.salaryApp.Utils.Tools;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 public class SalaryCalculator {
 
     private double totalWorkHour = 0.0;
+    private static final String FULL_TIME_LOG = "[FULL TIME] 全职无需结算工资: ";
+    private List<String> fullTimePeople = Arrays.asList("JING WEN", "Jing Shui", "Jing Bing");
 
     public String calculateForAll(SalaryCalculationInput input) {
         StringBuilder logForAll = new StringBuilder();
@@ -25,7 +28,12 @@ public class SalaryCalculator {
         Map<String, List<WorkSlot>> workSlotsMap = input.getWorkSlotMap();
         Map<String, Float> salaryMap = input.getSalaryMap();
 
-        String personInfoLog = String.format("%s该时段总工资为:", personName);
+        if (fullTimePeople.contains(personName)) {
+            AddToLog(FULL_TIME_LOG + personName, logForOne);
+            return logForOne.toString();
+        }
+
+        String personInfoLog = String.format("[Orz] %s该时段总工资为:", personName);
         AddToLog(personInfoLog, logForOne);
 
         List<WorkSlot> workSlotsForThisPerson = workSlotsMap.get(personName);

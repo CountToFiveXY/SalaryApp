@@ -10,6 +10,8 @@ public class SalaryEasterEggBuilder {
             return "(再接再厉)";
         else if (sum > 160)
             return "(你及格了)";
+        else if (sum == 0.0)
+            return "(这人没干活)";
         else
             return "(你辞职吧)";
     }

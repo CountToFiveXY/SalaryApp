@@ -1,13 +1,13 @@
-JING WEN-10.00
+JING WEN-20.00
+Jing Shui-20.00
+Jing Bing-20.00
+Janet-10.00
 WEN QIAN-9.00
-Cindy-8.00
-Wei Ting-8.00
-Janet-8.00
-Rachel-8.00
-Ting-8.00
-Jing Shui-8.00
-Neil Yang-8.00
-Kevin-8.00
-Sarah-8.00
-Joshua-8.00
-Jing Bing-8.00
+Cindy-8.5
+Neil Yang-8.5
+Wei Ting-8.25
+Rachel-8.25
+Ting-8.25
+Sarah-8.25
+Joshua-8.25
+Kevin-8.25

@@ -10,18 +10,17 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.nio.file.NoSuchFileException;
-import java.util.Arrays;
 import java.util.HashMap;
 
-public class JButtonBuilder {
+class JButtonBuilder {
 
     private SalaryAppHandler appHandler = new SalaryAppHandler();
 
-    public void initializeLoadButton(JButton load, JTextField fromText, JTextField toText) {
+    void initializeLoadButton(JButton load, JTextField fromText, JTextField toText) {
         load.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String buttonMessage = "";
+                String buttonMessage;
                 String from = fromText.getText();
                 String to = toText.getText();
 
@@ -39,12 +38,12 @@ public class JButtonBuilder {
                 } catch (NoSuchFileException exception) {
                     Tools.print("Some File is Missing: " + exception);
                 }
-                Tools.print("本次有工资记录的员工人数有: "+ input.getWorkSlotMap().keySet().toString());
+                Tools.print(String.format("日期%s到%s, 本次有工资记录的员工人数有:%s",fromText.getText(),toText.getText(), input.getWorkSlotMap().keySet().toString()));
             }
         });
     }
 
-    public void initializeAllSearchButton(JButton allSearch) {
+    void initializeAllSearchButton(JButton allSearch) {
         allSearch.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -53,11 +52,11 @@ public class JButtonBuilder {
         });
     }
 
-    public void initializeSingleSearchButton(JButton singleSearch, JTextField nameText) {
+    void initializeSingleSearchButton(JButton singleSearch, JTextField nameText) {
         singleSearch.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String buttonMessage = "";
+                String buttonMessage;
                 String personName = nameText.getText();
 
                 if (StringUtils.isNotBlank(personName)) {

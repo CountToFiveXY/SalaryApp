@@ -1,5 +1,6 @@
 package com.jason.salaryApp.Calculate;
 
+import com.jason.salaryApp.Builder.SalaryEasterEggBuilder;
 import com.jason.salaryApp.Data.SalaryCalculationInput;
 import com.jason.salaryApp.Data.WorkSlot;
 import com.jason.salaryApp.Utils.Tools;
@@ -33,7 +34,7 @@ public class SalaryCalculator {
         workSlotsForThisPerson.forEach(workSlot -> logEachWorkSlotAndTotalHour(workSlot, isSingleSearch, logForOne));
 
         double totalSalary = totalWorkHour * salaryPerHour;
-        String sumSalaryLog = String.format("%.2f(h) X %.2f($/h) = $%.2f",totalWorkHour, salaryPerHour, totalSalary);
+        String sumSalaryLog = String.format("%.2f(h) X %.2f($/h) = $%.2f%s",totalWorkHour, salaryPerHour, totalSalary, SalaryEasterEggBuilder.easterEgg(totalSalary));
         resetTotalWorkHour();
         AddToLog(sumSalaryLog, logForOne);
         return logForOne.toString();

@@ -25,13 +25,11 @@ public class SalaryAppHandler {
     }
 
     public String calculateSalaryForAll() {
-        salaryCalculator.calculateForAll(calculationInput);
-        return salaryCalculator.log;
+        return salaryCalculator.calculateForAll(calculationInput);
     }
 
     public String calculateSalaryForOne(String personName) {
         Tools.checkArgument(calculationInput.getWorkSlotMap().containsKey(personName), "This person is not in workSheet");
-        salaryCalculator.calculateSalaryForOnePerson(calculationInput, personName, true);
-        return salaryCalculator.log;
+        return salaryCalculator.calculateSalaryForOnePerson(calculationInput, personName, true);
     }
 }

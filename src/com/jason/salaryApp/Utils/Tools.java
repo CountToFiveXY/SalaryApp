@@ -11,12 +11,18 @@ import java.util.Date;
 public class Tools {
 
     public static final String LOG_SEPARATOR = "@";
+    public static final String NEW_LINE = System.getProperty("line.separator");
 
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     public static String getLocalTime() {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         return dateFormat.format(new Date()).substring(0,8);
+    }
+
+    public static String getCurrentTime() {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        return format.format(new Date());
     }
 
     public static String formatDate(String dateString) {

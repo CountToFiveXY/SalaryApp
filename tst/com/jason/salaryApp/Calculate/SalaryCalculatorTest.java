@@ -38,14 +38,12 @@ public class SalaryCalculatorTest {
 
     @Test
     public void testCalculateForAll() {
-        calculator.calculateForAll(input);
-        printLog(calculator.log);
+        printLog(calculator.calculateForAll(input));
     }
 
     @Test
     public void testCalculateForOne() {
-        calculator.calculateSalaryForOnePerson(input, personName, true);
-        printLog(calculator.log);
+        printLog(calculator.calculateSalaryForOnePerson(input, personName, true));
     }
 
     private void printLog(String logString) {

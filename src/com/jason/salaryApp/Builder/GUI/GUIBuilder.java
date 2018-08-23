@@ -10,7 +10,7 @@ public class GUIBuilder {
 
     //App的参数
     private final static int APP_WIDTH = 250;
-    private final static int APP_HEIGHT = 205;
+    private final static int APP_HEIGHT = 215;
     private final static String KFT_VERSION_STRING  = " KFT工资计算器v3.1";
     private final static String AUTHOR_LABEL = "        ~~ Developed By @Jason ~~";
     private final static String LABEL_START_DATE = "开始日期:";

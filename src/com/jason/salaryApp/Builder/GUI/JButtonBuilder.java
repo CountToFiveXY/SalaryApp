@@ -70,6 +70,5 @@ public class JButtonBuilder {
                 JOptionPane.showMessageDialog(null, buttonMessage);
             }
         });
-
     }
 }

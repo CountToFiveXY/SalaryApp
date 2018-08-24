@@ -165,6 +165,12 @@ public class StringUtilsTest {
         Assert.assertEquals("someString", StringUtils.removeBlankPrefixAndSuffix("   someString     "));
     }
 
+    @Test
+    public void testReplaceStash() {
+        String inputString = "9:30－4";
+        Assert.assertEquals("9:30-4", StringUtils.replaceStashString(inputString));
+    }
+
     //Unit tests For Method: correctDate
     @Test
     public void testCorrectDate() {

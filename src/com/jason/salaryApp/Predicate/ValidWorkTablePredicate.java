@@ -69,7 +69,7 @@ public class ValidWorkTablePredicate {
     private boolean testAllWorkSlotValid(List<String[]> workSheet) {
         List<String[]> workSlotSheet = getWorkSlotSheet(workSheet);
 
-        for(String[] row : workSlotSheet) {
+        for (String[] row : workSlotSheet) {
             boolean f = Arrays.stream(row).filter(s -> !s.equals("X")).allMatch(new ValidWorkSlotPredicate());
             if (!f)
                 throw new IllegalArgumentException("[ERROR] Bad Input: some workSlot value of this row may be wrong:" + Arrays.toString(row));

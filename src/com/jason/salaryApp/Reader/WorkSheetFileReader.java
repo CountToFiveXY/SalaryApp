@@ -19,7 +19,7 @@ public class WorkSheetFileReader {
     private static final String X = "X";
     private static final List<String> files = Arrays.asList("1.csv", "2.csv", "3.csv");
 
-    //Path Constant
+    //WorkSheet Path
     public static final String WORKSHEET_FILE_PATH = "tables/";
     public static final String TEST_WORKSHEET_FILE_PATH = "resources/testInput/";
 
@@ -30,7 +30,7 @@ public class WorkSheetFileReader {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] rowContent = StringUtils.convertCsvRowString(line);
-                Tools.checkArgument(checkRowValidation(line, rowContent), "[ERROR!] This row has 15+ columns:" + line);
+                Tools.checkArgument(checkColumnForEachRow(line, rowContent), "[ERROR!] This row has 15+ columns:" + line);
                 workSheet.add(modifyEachRow(rowContent));
             }
         } catch (IOException e){
@@ -59,31 +59,49 @@ public class WorkSheetFileReader {
         Arrays.fill(modifiedRow, 0, COLUMN, X);
 
         for (int i = 0; i < rowContent.length; i++) {
-            modifiedRow[i] = StringUtils.isNotBlank(rowContent[i])? StringUtils.removeBlankPrefixAndSuffix(rowContent[i]) : X;
+            modifiedRow[i] = StringUtils.isNotBlank(rowContent[i])? modifyRowContent(rowContent[i]) : X;
         }
 
-        boolean isDateOrWeekDayRow = modifiedRow[0].equals(DATE_STRING) || modifiedRow[0].equals(WEEKDAY_STRING);
+        modifySpecialRow(modifiedRow);
 
-        if (isDateOrWeekDayRow) {
-            modifySpecialRowContent(modifiedRow);
-        }
         return modifiedRow;
     }
 
-    private void modifySpecialRowContent(String[] rowContent) {
-        for (int i = 2; i < rowContent.length; i+=2) {
-            rowContent[i] = rowContent[i-1];
+    private void modifySpecialRow(String[] modifiedRow) {
+
+        if (isDateRow(modifiedRow)) {
+            modifiedRow[0] = DATE_STRING;
+            for (int i = 2; i < modifiedRow.length; i+=2) {
+                modifiedRow[i] = modifiedRow[i-1];
+            }
+
+            for (int i = 1; i < modifiedRow.length; i++) {
+                modifiedRow[i] = Tools.formatDate(modifiedRow[i]);
+            }
         }
 
-        //TODO: modify it
-        if (rowContent[0].equals(DATE_STRING)) {
-            for (int i = 1; i < rowContent.length; i++) {
-                rowContent[i] = Tools.formatDate(rowContent[i]);
+        if (isWeekDayRow(modifiedRow)) {
+            modifiedRow[0] = WEEKDAY_STRING;
+            for (int i = 2; i < modifiedRow.length; i+=2) {
+                modifiedRow[i] = modifiedRow[i-1];
             }
         }
     }
 
-    private boolean checkRowValidation(String line, String[] rowContext) {
+    private String modifyRowContent(String rowContent) {
+        String removeBlank = StringUtils.removeBlankPrefixAndSuffix(rowContent);
+        return StringUtils.replaceStashString(removeBlank);
+    }
+
+    private boolean isDateRow(String[] modifiedRow) {
+        return modifiedRow[0].equals(X) && modifiedRow[1].startsWith("2");
+    }
+
+    private boolean isWeekDayRow(String[] modifiedRow) {
+        return modifiedRow[0].equals(X) && modifiedRow[1].equals("Mon");
+    }
+
+    private boolean checkColumnForEachRow(String line, String[] rowContext) {
         int len = (line + "s").split(",").length;
         return rowContext.length == 0 || len == 15;
     }

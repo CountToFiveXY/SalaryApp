@@ -101,6 +101,11 @@ public class StringUtils {
         return s;
     }
 
+    public static String replaceStashString(String s) {
+        if (isBlank(s)) { return null; }
+        return s.replace("－", "-");
+    }
+
     public static boolean isBlank(String str) {
         int strLen;
         if (str == null || (strLen = str.length()) == 0) {

@@ -13,7 +13,7 @@ public class LogWriter {
     private final static String REPORT_NAME = "工资查询记录.txt";
     private final static String TITLE = "🌚功夫茶员工工资查询日志🌝";
     private final static String LOG_PREFIX = "本次查询时间为:";
-    private final static String SEPARATOR = "========================";
+    private final static String SEPARATOR = "=======================================";
 
     public static void writeLogs (String logs) {
         try {

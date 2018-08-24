@@ -7,7 +7,7 @@ public class SalaryEasterEggBuilder {
         if (sum > 500.00)
             return "(土豪请客)";
         else if (sum > 300.00)
-            return "(再接再厉)";
+            return "(干的不错)";
         else if (sum > 160)
             return "(你及格了)";
         else if (sum == 0.0)

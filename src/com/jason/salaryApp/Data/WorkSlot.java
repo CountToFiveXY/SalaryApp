@@ -27,6 +27,6 @@ public class WorkSlot {
     }
 
     public String toLog() {
-        return String.format("Date: %s, workTime: %s－%s(%.1f hours)", getDate(),getFromTime(),getToTime(), getWorkTime());
+        return String.format("Date: %s, workTime: %s--%s(%.1f hours)", getDate(), getFromTime(), getToTime(), getWorkTime());
     }
 }

@@ -5,9 +5,7 @@ import com.jason.salaryApp.Data.SalaryCalculationInput;
 import com.jason.salaryApp.Data.WorkSlot;
 import com.jason.salaryApp.Utils.Tools;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class SalaryCalculator {
 
@@ -17,36 +15,41 @@ public class SalaryCalculator {
     private List<String> fullTimePeople = Arrays.asList("JING WEN", "Jing Shui", "Jing Bing");
 
     public String calculateForAll(SalaryCalculationInput input) {
-        StringBuilder logForAll = new StringBuilder();
-        for (String personName : input.getWorkSlotMap().keySet()) {
-            logForAll.append(calculateSalaryForOnePerson(input, personName, false));
+        StringBuilder logBuilderForAll = new StringBuilder();
+        List<String> personNames = new ArrayList<>(input.getWorkSlotMap().keySet());
+
+        sortPersonNameList(personNames);
+
+        for (String personName : personNames) {
+            logBuilderForAll.append(calculateSalaryForOnePerson(input, personName, false));
         }
-        return logForAll.toString();
+
+        return logBuilderForAll.toString();
     }
 
     public String calculateSalaryForOnePerson(SalaryCalculationInput input, String personName, boolean isSingleSearch) {
-        StringBuilder logForOneBuilder = new StringBuilder();
+        StringBuilder logBuilderForOne = new StringBuilder();
         Map<String, List<WorkSlot>> workSlotsMap = input.getWorkSlotMap();
         Map<String, Float> salaryMap = input.getSalaryMap();
 
         if (fullTimePeople.contains(personName)) {
-            AddToLogBuilder(FULL_TIME_LOG + personName, logForOneBuilder);
-            return logForOneBuilder.toString();
+            AddToLogBuilder(FULL_TIME_LOG + personName, logBuilderForOne);
+            return logBuilderForOne.toString();
         }
 
         String personInfoLog = String.format(EMPLOYEE_LOG, personName);
-        AddToLogBuilder(personInfoLog, logForOneBuilder);
+        AddToLogBuilder(personInfoLog, logBuilderForOne);
 
         List<WorkSlot> workSlotsForThisPerson = workSlotsMap.get(personName);
         Float salaryPerHour = salaryMap.get(personName);
 
-        workSlotsForThisPerson.forEach(workSlot -> logEachWorkSlotAndTotalHour(workSlot, isSingleSearch, logForOneBuilder));
+        workSlotsForThisPerson.forEach(workSlot -> logEachWorkSlotAndTotalHour(workSlot, isSingleSearch, logBuilderForOne));
 
         double totalSalary = totalWorkHour * salaryPerHour;
         String sumSalaryLog = String.format("%.2f(h) X %.2f($/h) = $%.2f%s",totalWorkHour, salaryPerHour, totalSalary, SalaryEasterEggBuilder.easterEgg(totalSalary));
         resetTotalWorkHour();
-        AddToLogBuilder(sumSalaryLog, logForOneBuilder);
-        return logForOneBuilder.toString();
+        AddToLogBuilder(sumSalaryLog, logBuilderForOne);
+        return logBuilderForOne.toString();
     }
 
     private void logEachWorkSlotAndTotalHour(WorkSlot workSlot, boolean isSingleSearch, StringBuilder logForOne) {
@@ -61,6 +64,9 @@ public class SalaryCalculator {
         if (isSingleSearch) {
             AddToLogBuilder(proceedWorkSlotLog, logForOne);
         }
+    }
+    private void sortPersonNameList(List<String> personNames) {
+        personNames.sort(Comparator.comparing(fullTimePeople::contains));
     }
 
     private void AddToLogBuilder(String logString, StringBuilder sb) {

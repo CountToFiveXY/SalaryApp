@@ -12,8 +12,8 @@ public class SalaryAppHandlerTest {
 
     @Test
     public void testBuildCalculationInput() throws NoSuchFileException{
-        String startDate = "2018-07-20";
-        String endDate = "2018-07-30";
+        String startDate = "2018-07-16";
+        String endDate = "2018-07-31";
         handler.buildCalculationInput(startDate, endDate);
         String log = handler.calculateSalaryForAll();
         printLog(log);

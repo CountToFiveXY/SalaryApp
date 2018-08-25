@@ -1,6 +1,7 @@
 package com.jason.salaryApp.Predicate;
 
 import com.jason.salaryApp.Reader.WorkSheetFileReader;
+import com.jason.salaryApp.Utils.ErrorMessages;
 import com.jason.salaryApp.Utils.StringUtils;
 
 import java.util.Arrays;
@@ -32,7 +33,7 @@ public class ValidWorkTablePredicate {
                     Arrays.stream(row)
                             .allMatch(StringUtils::isNotBlank);
             if (!flag)
-                throw new IllegalArgumentException("[ERROR] Bad Input: this workSlot's value is wrong:" + Arrays.toString(row));
+                throw new IllegalArgumentException(ErrorMessages.NULL_WORKSLOT_VALUE + Arrays.toString(row));
         });
 
         return true;
@@ -42,7 +43,7 @@ public class ValidWorkTablePredicate {
         boolean flag = workSheet.stream()
                 .allMatch(row -> row.length == WorkSheetFileReader.COLUMN);
         if (!flag)
-            throw new IllegalArgumentException("[ERROR]: Bad Input: table should have 15 columns");
+            throw new IllegalArgumentException(ErrorMessages.BAD_WORKSHEET_COLUMN);
         return true;
     }
 
@@ -52,7 +53,7 @@ public class ValidWorkTablePredicate {
                 .filter(s -> !s.equals("Date"))
                 .allMatch(new ValidDatePredicate());
         if (!flag)
-            throw new IllegalArgumentException("[ERROR] Bad Date Row" + Arrays.asList(workSheet.get(0)));
+            throw new IllegalArgumentException(ErrorMessages.BAD_DATE_ROW + Arrays.asList(workSheet.get(0)));
         return true;
     }
 
@@ -62,7 +63,7 @@ public class ValidWorkTablePredicate {
                 .filter(s -> !s.equals("WeekDay"))
                 .allMatch(new ValidWeekDayPredicate());
         if (!flag)
-            throw new IllegalArgumentException("[ERROR] Bad WeekDay Row");
+            throw new IllegalArgumentException(ErrorMessages.BAD_WEEKDAY_ROW);
         return true;
     }
 
@@ -72,7 +73,7 @@ public class ValidWorkTablePredicate {
         for (String[] row : workSlotSheet) {
             boolean f = Arrays.stream(row).filter(s -> !s.equals("X")).allMatch(new ValidWorkSlotPredicate());
             if (!f)
-                throw new IllegalArgumentException("[ERROR] Bad Input: some workSlot value of this row may be wrong:" + Arrays.toString(row));
+                throw new IllegalArgumentException(ErrorMessages.BAD_WORKSLOT_VALUE + Arrays.toString(row));
         }
 
         return true;

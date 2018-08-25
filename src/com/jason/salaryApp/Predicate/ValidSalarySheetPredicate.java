@@ -1,5 +1,6 @@
 package com.jason.salaryApp.Predicate;
 
+import com.jason.salaryApp.Utils.ErrorMessages;
 import com.jason.salaryApp.Utils.StringUtils;
 
 import java.util.Arrays;
@@ -20,7 +21,7 @@ public class ValidSalarySheetPredicate implements Predicate<List<String[]>> {
                 .allMatch(row -> Arrays.stream(row)
                                 .allMatch(StringUtils::isNotBlank));
         if (!flag)
-            throw new IllegalArgumentException("[ERROR] Bad Salary Input: there exists empty row, please delete");
+            throw new IllegalArgumentException(ErrorMessages.EMPTY_SALARY_ROW);
         return true;
     }
 
@@ -28,7 +29,7 @@ public class ValidSalarySheetPredicate implements Predicate<List<String[]>> {
         boolean flag = workSheet.stream()
                 .allMatch(row -> row.length == 2);
         if (!flag)
-            throw new IllegalArgumentException("[ERROR]: Bad Salary Input: salary file should have 2 columns");
+            throw new IllegalArgumentException(ErrorMessages.BAD_SALARY_COLUMN);
         return true;
     }
 
@@ -36,7 +37,7 @@ public class ValidSalarySheetPredicate implements Predicate<List<String[]>> {
         boolean flag = salarySheet.stream()
                 .allMatch(row -> StringUtils.isFloat(row[1]));
         if (!flag)
-            throw new IllegalArgumentException("[ERROR] Bad Salary Input: some salary Amount is not right, please correct");
+            throw new IllegalArgumentException(ErrorMessages.BAD_SALARY_NUMBER);
         return true;
     }
 }

@@ -4,6 +4,7 @@ import com.jason.salaryApp.Builder.CalculationInputBuilder;
 import com.jason.salaryApp.Calculate.SalaryCalculator;
 import com.jason.salaryApp.Data.SalaryCalculationInput;
 import com.jason.salaryApp.Predicate.ValidSalaryCalculationInputPredicate;
+import com.jason.salaryApp.Utils.ErrorMessages;
 import com.jason.salaryApp.Utils.Tools;
 
 import java.nio.file.NoSuchFileException;
@@ -20,7 +21,7 @@ public class SalaryAppHandler {
     //build workSlotMap and SalaryMap separately and build Calculation Input with them.
     public SalaryCalculationInput buildCalculationInput(String startDateString, String endDateString) throws NoSuchFileException{
         calculationInput = inputBuilder.buildCalculationInput(startDateString, endDateString);
-        Tools.checkArgument(salaryCalculationInputPredicate.test(calculationInput), "Some people in workSheet are not in SalaryFile -> " + salaryCalculationInputPredicate.getUnSalariedPeopleName(calculationInput));
+        Tools.checkArgument(salaryCalculationInputPredicate.test(calculationInput), ErrorMessages.MISS_SALARY_KEY + salaryCalculationInputPredicate.getUnSalariedPeopleName(calculationInput));
         return calculationInput;
     }
 
@@ -29,7 +30,7 @@ public class SalaryAppHandler {
     }
 
     public String calculateSalaryForOne(String personName) {
-        Tools.checkArgument(calculationInput.getWorkSlotMap().containsKey(personName), "This person is not in workSheet");
+        Tools.checkArgument(calculationInput.getWorkSlotMap().containsKey(personName), ErrorMessages.WRONG_INPUT_PERSON);
         return salaryCalculator.calculateSalaryForOnePerson(calculationInput, personName, true);
     }
 }

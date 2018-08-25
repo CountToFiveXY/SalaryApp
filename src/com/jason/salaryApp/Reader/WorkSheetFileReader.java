@@ -1,5 +1,6 @@
 package com.jason.salaryApp.Reader;
 
+import com.jason.salaryApp.Utils.ErrorMessages;
 import com.jason.salaryApp.Utils.StringUtils;
 import com.jason.salaryApp.Utils.Tools;
 import org.springframework.stereotype.Component;
@@ -30,7 +31,7 @@ public class WorkSheetFileReader {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] rowContent = StringUtils.convertCsvRowString(line);
-                Tools.checkArgument(checkColumnForEachRow(line, rowContent), "[ERROR!] This row has 15+ columns:" + line);
+                Tools.checkArgument(checkColumnForEachRow(line, rowContent), ErrorMessages.ROW_EXCEED_COLUMN + line);
                 workSheet.add(modifyEachRow(rowContent));
             }
         } catch (IOException e){

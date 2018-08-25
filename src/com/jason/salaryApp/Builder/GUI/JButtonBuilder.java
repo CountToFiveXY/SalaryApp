@@ -24,21 +24,16 @@ class JButtonBuilder {
                 String from = fromText.getText();
                 String to = toText.getText();
 
-                if (!from.endsWith("-") && !to.endsWith("-")) {
-                    buttonMessage = String.format("Loading Data from %s to %s.",fromText.getText(),toText.getText());
-                } else {
-                    buttonMessage = "[Error]: Your Date format is wrong.";
+                SalaryCalculationInput input;
+                try {
+                    input = appHandler.buildCalculationInput(from, to);
+                    buttonMessage = String.format("日期%s到%s, 本次有工资记录的员工人数有:%s",fromText.getText(),toText.getText(), input.getWorkSlotMap().keySet().toString());
+                } catch (Exception exception) {
+                    buttonMessage ="There is an ERROR, check ERROR LOG";
+                    LogWriter.writeErrorLog(exception.toString());
                 }
 
                 JOptionPane.showMessageDialog(null, buttonMessage);
-
-                SalaryCalculationInput input = new SalaryCalculationInput(new HashMap<>(), new HashMap<>());
-                try {
-                    input = appHandler.buildCalculationInput(from, to);
-                } catch (NoSuchFileException exception) {
-                    Tools.print("Some File is Missing: " + exception);
-                }
-                Tools.print(String.format("日期%s到%s, 本次有工资记录的员工人数有:%s",fromText.getText(),toText.getText(), input.getWorkSlotMap().keySet().toString()));
             }
         });
     }
@@ -47,7 +42,8 @@ class JButtonBuilder {
         allSearch.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                LogWriter.writeLogs(appHandler.calculateSalaryForAll());
+                LogWriter.writeSalaryLog(appHandler.calculateSalaryForAll());
+                JOptionPane.showMessageDialog(null, "一键查询已完成, 请阅读工资查询记录.txt");
             }
         });
     }
@@ -59,11 +55,12 @@ class JButtonBuilder {
                 String buttonMessage;
                 String personName = nameText.getText();
 
-                if (StringUtils.isNotBlank(personName)) {
+                try {
+                    LogWriter.writeSalaryLog(appHandler.calculateSalaryForOne(personName));
                     buttonMessage = "查询" + personName + "的工资";
-                    LogWriter.writeLogs(appHandler.calculateSalaryForOne(personName));
-                } else {
-                    buttonMessage = "二货忘了输入名字";
+                } catch (Exception exception) {
+                    buttonMessage = "There is an ERROR, check ERROR LOG";
+                    LogWriter.writeErrorLog(exception.toString());
                 }
 
                 JOptionPane.showMessageDialog(null, buttonMessage);

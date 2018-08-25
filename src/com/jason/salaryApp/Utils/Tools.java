@@ -30,7 +30,7 @@ public class Tools {
         try {
             date = dateFormat.parse(dateString);
         } catch (ParseException e) {
-            throw new WrongDateFormatException("Date format should be yyyy-MM-dd: " + dateString);
+            throw new WrongDateFormatException(ErrorMessages.WRONG_INPUT_DATE_FORMAT + dateString);
         }
         return dateFormat.format(date);
     }
@@ -42,7 +42,7 @@ public class Tools {
             startDate = dateFormat.parse(start);
             endDate = dateFormat.parse(end);
         } catch (ParseException e) {
-            throw new WrongDateFormatException("Date format should be yyyy-MM-dd");
+            throw new WrongDateFormatException(ErrorMessages.WRONG_INPUT_DATE_FORMAT);
         }
         return !(workDate.before(startDate) || workDate.after(endDate));
     }

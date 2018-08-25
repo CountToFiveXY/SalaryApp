@@ -30,7 +30,7 @@ class JButtonBuilder {
                     buttonMessage = String.format("日期%s到%s, 本次有工资记录的员工人数有:%s",fromText.getText(),toText.getText(), input.getWorkSlotMap().keySet().toString());
                 } catch (Exception exception) {
                     buttonMessage ="There is an ERROR, check ERROR LOG";
-                    LogWriter.writeErrorLog(exception.toString());
+                    LogWriter.writeErrorLog(exception.getMessage());
                 }
 
                 JOptionPane.showMessageDialog(null, buttonMessage);
@@ -60,7 +60,7 @@ class JButtonBuilder {
                     buttonMessage = "查询" + personName + "的工资";
                 } catch (Exception exception) {
                     buttonMessage = "There is an ERROR, check ERROR LOG";
-                    LogWriter.writeErrorLog(exception.toString());
+                    LogWriter.writeErrorLog(exception.getMessage());
                 }
 
                 JOptionPane.showMessageDialog(null, buttonMessage);

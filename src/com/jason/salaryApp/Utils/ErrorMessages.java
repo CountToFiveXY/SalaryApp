@@ -15,5 +15,5 @@ public class ErrorMessages {
     public static final String ROW_EXCEED_COLUMN = "[ERROR]This row has 15+ columns:";
     public static final String MISS_SALARY_KEY = "[ERROR]Some people in workSheet are not in SalaryFile -> ";
     public static final String WRONG_INPUT_PERSON = "[ERROR]This person is not in workSheet";
-    public static final String WRONG_INPUT_DATE_FORMAT = "[ERROR]Input Date format should be yyyy-MM-dd: ";
+    public static final String WRONG_INPUT_DATE_FORMAT = "[ERROR]Input Date format should be yyyy-MM-dd";
 }

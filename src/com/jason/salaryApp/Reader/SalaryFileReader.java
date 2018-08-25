@@ -2,9 +2,12 @@ package com.jason.salaryApp.Reader;
 
 import com.jason.salaryApp.Utils.StringUtils;
 
+import java.io.File;
 import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.InputStreamReader;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.NoSuchFileException;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +19,10 @@ public class SalaryFileReader {
     public List<String[]> readSalaryFile (String fileName) throws NoSuchFileException{
         List<String[]> salaryContent = new ArrayList<>();
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(fileName));
+            File inputCSV = new File(fileName);
+            BufferedReader reader = new BufferedReader(
+                    new InputStreamReader(
+                            new FileInputStream(inputCSV), StandardCharsets.UTF_8));
             String line;
             while ((line = reader.readLine()) != null) {
                 salaryContent.add(StringUtils.convertSalaryString(line));

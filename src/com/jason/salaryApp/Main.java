@@ -9,8 +9,13 @@ public class Main {
     Input: 1. 3 worksheet csvs
            2. 1 salarySheet txt
 
-    Process: workSheetInput ---workSheetFileReader read each sheet---> three raw worksheet data ---> filter By validWorkSheetPredicate(If Any Sheet invalid, break whole program) ---|
-    ******************************                  SalaryAppHandler merge three maps to one WorkSlotMap <---WorkSlotsMapBuilder build map for each data--- three valid raw worksheet data <---|
+    Process:
+    3 csvs --> three raw worksheet data --> sheet check --> three valid raw worksheet data --> three workSlot map --> filter by calculation date --> combine to one workSlot Map
+    1 salary txt --> salary Sheet data --> salary Map
+
+    load button two maps --> calculationInput
+    calculation button --> operate on Input
+
      */
 
     public static void main(String[] args) {

@@ -54,10 +54,11 @@ public class CalculationInputBuilder {
     }
 
     private HashMap<String, Float> getSalaryMap() throws NoSuchFileException{
-        if (!salarySheetPredicate.test(salaryFileReader.getFormalSalaryFile())) {
+        List<String[]> salarySheet = salaryFileReader.getFormalSalaryFile();
+        if (!salarySheetPredicate.test(salarySheet)) {
             return null;
         }
-        return salaryMapBuilder.buildSalaryMap(salaryFileReader.getFormalSalaryFile());
+        return salaryMapBuilder.buildSalaryMap(salarySheet);
     }
 
     private boolean isValidWorkSheet(List<String[]> workSheet) {

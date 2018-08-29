@@ -110,7 +110,7 @@ public class GUIBuilder {
 
     private void setUpJFrame() {
         jf.setLayout(null);
-        jf.setBounds(0,0,APP_WIDTH,APP_HEIGHT);
+        jf.setSize(APP_WIDTH, APP_HEIGHT);
         jf.setVisible(true);
         jf.setLocationRelativeTo(null);
         jf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

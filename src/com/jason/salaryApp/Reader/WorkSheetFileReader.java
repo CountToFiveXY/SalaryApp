@@ -5,9 +5,12 @@ import com.jason.salaryApp.Utils.StringUtils;
 import com.jason.salaryApp.Utils.Tools;
 import org.springframework.stereotype.Component;
 
+import java.io.File;
 import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.InputStreamReader;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -27,7 +30,10 @@ public class WorkSheetFileReader {
     public List<String[]> readWorkSheetFile(String filePath) {
         List<String[]> workSheet = new ArrayList<>();
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(filePath));
+            File inputCSV = new File(filePath);
+            BufferedReader reader = new BufferedReader(
+                    new InputStreamReader(
+                            new FileInputStream(inputCSV), StandardCharsets.UTF_8));
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] rowContent = StringUtils.convertCsvRowString(line);

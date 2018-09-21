@@ -10,12 +10,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class WorkSlotsMapBuilder {
+class WorkSlotsMapBuilder {
 
     private ValidWorkSlotPredicate validWorkSlotPredicate = new ValidWorkSlotPredicate();
     private List<String> NonSalaryRowFirstString = Arrays.asList("Date", "WeekDay");
 
-    public HashMap<String, List<WorkSlot>> buildWorkSlotMapForEachSheet(List<String[]> worksheet) {
+    HashMap<String, List<WorkSlot>> buildWorkSlotMapForEachSheet(List<String[]> worksheet) {
         HashMap<String, List<WorkSlot>> personToWorkSlotMap = new HashMap<>();
         String[] dateRow = worksheet.get(0);
         String[] weekDateRow = worksheet.get(1);

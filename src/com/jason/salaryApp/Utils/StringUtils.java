@@ -22,10 +22,6 @@ public class StringUtils {
         return Float.parseFloat(s);
     }
 
-    public static String combine(String str1, String str2) {
-        return str1 + str2;
-    }
-
     public static String[] convertCsvRowString(String s) {
         return s.split(",");
     }
@@ -42,7 +38,7 @@ public class StringUtils {
         return result;
     }
 
-    public static String[] convertWorkHourString(String s) {
+    static String[] convertWorkHourString(String s) {
         String[] result = s.split(":");
         if (result.length != 2) {
             return s.split("：");
@@ -68,26 +64,6 @@ public class StringUtils {
         return toFloat(timeArray[0]);
     }
 
-    public static String correctDate (String date) {
-        String[] dateArray = StringUtils.convertDateString(date);
-        String modifiedDate = "";
-        int len = dateArray.length;
-
-        for(int i = 0; i < len; i ++){
-            String s = dateArray[i];
-            if (s.length() == 1){
-                s = "0" + s;
-            }
-            if (i >= len-1) {
-                modifiedDate += s;
-            }else{
-                modifiedDate += s + "-";
-            }
-        }
-        return modifiedDate;
-    }
-
-
     public static String removeBlankPrefixAndSuffix(String s) {
         if (isBlank(s)) {
             return null;
@@ -106,7 +82,7 @@ public class StringUtils {
         return s.replace("－", "-");
     }
 
-    public static boolean isBlank(String str) {
+    private static boolean isBlank(String str) {
         int strLen;
         if (str == null || (strLen = str.length()) == 0) {
             return true;

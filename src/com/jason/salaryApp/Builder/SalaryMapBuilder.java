@@ -5,10 +5,11 @@ import com.jason.salaryApp.Utils.StringUtils;
 import java.util.HashMap;
 import java.util.List;
 
-public class SalaryMapBuilder {
+class SalaryMapBuilder {
 
     private final String MULTIPLE_SALARY_LINE_MESSAGE = "Multiple salary line for one person";
-    public HashMap<String, Float> buildSalaryMap(List<String[]> salaryContent) {
+
+    HashMap<String, Float> buildSalaryMap(List<String[]> salaryContent) {
         HashMap<String, Float> salaryMap = new HashMap<>();
         salaryContent.forEach(rowContent -> {
             String personName = rowContent[0];

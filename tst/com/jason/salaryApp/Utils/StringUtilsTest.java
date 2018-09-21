@@ -3,8 +3,6 @@ package com.jason.salaryApp.Utils;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.Arrays;
-
 public class StringUtilsTest {
 
     //Unit tests For Method: isNotBlank
@@ -33,7 +31,7 @@ public class StringUtilsTest {
         String[] result;
         String inputString = ",9:30-5,,,,5-10,,,,,7-11,,7-11,,";
         result = StringUtils.convertCsvRowString(inputString);
-        Assert.assertTrue(result[1].equals("9:30-5"));
+        Assert.assertEquals("9:30-5", result[1]);
         Assert.assertEquals(13, result.length);
     }
 
@@ -142,7 +140,7 @@ public class StringUtilsTest {
     //Unit tests for Method: convertTimeToNumberFormat
     @Test
     public void testConvertTimeToNumberFormat1() {
-        Float result;
+        float result;
         String inputString = "9:30";
         result = StringUtils.convertTimeToNumberFormat(inputString);
         Assert.assertTrue(result == 9.5);
@@ -150,7 +148,7 @@ public class StringUtilsTest {
 
     @Test
     public void testConvertTimeToNumberFormat2() {
-        Float result;
+        float result;
         String inputString = "5";
         result = StringUtils.convertTimeToNumberFormat(inputString);
         Assert.assertTrue(result == 5);
@@ -169,15 +167,5 @@ public class StringUtilsTest {
     public void testReplaceStash() {
         String inputString = "9:30－4";
         Assert.assertEquals("9:30-4", StringUtils.replaceStashString(inputString));
-    }
-
-    //Unit tests For Method: correctDate
-    @Test
-    public void testCorrectDate() {
-        Assert.assertEquals("2018-07-01", StringUtils.correctDate("2018-7-1"));
-    }
-
-    private void printResult(String[] result) {
-        System.out.println(Arrays.toString(result));
     }
 }

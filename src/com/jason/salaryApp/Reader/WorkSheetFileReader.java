@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 @Component
 public class WorkSheetFileReader {
 
-    public static final int COLUMN = 15;
+    public static final int COLUMN_NUM = 15;
     private static final String DATE_STRING = "Date";
     private static final String WEEKDAY_STRING = "WeekDay";
     private static final String X = "X";
@@ -35,9 +35,11 @@ public class WorkSheetFileReader {
                     new InputStreamReader(
                             new FileInputStream(inputCSV), StandardCharsets.UTF_8));
             String line;
+            int lineNum = 0;
             while ((line = reader.readLine()) != null) {
+                lineNum = lineNum + 1;
                 String[] rowContent = StringUtils.convertCsvRowString(line);
-                Tools.checkArgument(checkColumnForEachRow(line, rowContent), ErrorMessages.ROW_EXCEED_COLUMN + line);
+                Tools.checkArgument(checkColumnForEachRow(line, rowContent), filePath+ ":line-" + lineNum + ":" + ErrorMessages.ROW_EXCEED_COLUMN + line);
                 workSheet.add(modifyEachRow(rowContent));
             }
         } catch (IOException e){
@@ -57,13 +59,13 @@ public class WorkSheetFileReader {
     }
 
     /*
-    1. Fill each blank slot with X
-    2. remove blank prefix for each String
-    3. If is Date or WeekDay Row, Modify it with value filled
+    1. create another line with 15 X.
+    2. if value exists in origin row, remove blank prefix&&suffix and replace X.
+    3. If it's Date or WeekDay Row, fill X with Date/WeekDay.
      */
     String[] modifyEachRow(String[] rowContent) {
-        String[] modifiedRow = new String[COLUMN];
-        Arrays.fill(modifiedRow, 0, COLUMN, X);
+        String[] modifiedRow = new String[COLUMN_NUM];
+        Arrays.fill(modifiedRow, 0, COLUMN_NUM, X);
 
         for (int i = 0; i < rowContent.length; i++) {
             modifiedRow[i] = StringUtils.isNotBlank(rowContent[i])? modifyRowContent(rowContent[i]) : X;

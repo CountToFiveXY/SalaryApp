@@ -32,7 +32,7 @@ public class WorkSlotsMapFilterTest {
     public void filterWorkSlotsMap() {
         String startDate = "2018-05-01";
         String endDate = "2018-05-15";
-        filter.filterWorkSlotsMap(workSlotMap, startDate, endDate);
+        filter.filterOnlyWorkSlotsMap(workSlotMap, startDate, endDate);
         printMap(workSlotMap);
     }
 

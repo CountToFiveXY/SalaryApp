@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 @Component
 public class WorkSlotsMapFilter {
 
-    public void filterWorkSlotsMap(HashMap<String, List<WorkSlot>> workSlotsMap, String startDateString, String endDateString) {
+    public void filterOnlyWorkSlotsMap(HashMap<String, List<WorkSlot>> workSlotsMap, String startDateString, String endDateString) {
         for (String personName : workSlotsMap.keySet()) {
             workSlotsMap.put(personName, filterWorkSlotsBasedOnSalaryPeriod(workSlotsMap.get(personName), startDateString, endDateString));
         }

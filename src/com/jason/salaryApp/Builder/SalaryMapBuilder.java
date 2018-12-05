@@ -2,12 +2,11 @@ package com.jason.salaryApp.Builder;
 
 import com.jason.salaryApp.Utils.StringUtils;
 
+import com.jason.salaryApp.Utils.ErrorMessages;
 import java.util.HashMap;
 import java.util.List;
 
 class SalaryMapBuilder {
-
-    private final String MULTIPLE_SALARY_LINE_MESSAGE = "Multiple salary line for one person";
 
     HashMap<String, Float> buildSalaryMap(List<String[]> salaryContent) {
         HashMap<String, Float> salaryMap = new HashMap<>();
@@ -21,7 +20,7 @@ class SalaryMapBuilder {
 
     private void fillSalaryMap(HashMap<String, Float> salaryMap, String personName, Float salary) {
         if (salaryMap.containsKey(personName)) {
-            throw new IllegalArgumentException(MULTIPLE_SALARY_LINE_MESSAGE);
+            throw new IllegalArgumentException(ErrorMessages.MULTIPLE_SALARY_LINE_MESSAGE);
         }
         salaryMap.put(personName, salary);
     }

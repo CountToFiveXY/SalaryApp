@@ -39,7 +39,7 @@ class WorkSlotsMapBuilder {
     private List<WorkSlot> buildWorkSlotListForPerson(String[] rowContent, String[] dateRow, String[] weekDateRow) {
         List<WorkSlot> workSlotsForPerson = new ArrayList<>();
 
-        for (int index = 0; index < WorkSheetFileReader.COLUMN; index++) {
+        for (int index = 0; index < WorkSheetFileReader.COLUMN_NUM; index++) {
             String content = rowContent[index];
             if (validWorkSlotPredicate.test(content)) {
                 workSlotsForPerson.add(createWorkSlotByIndex(index, content, dateRow, weekDateRow));

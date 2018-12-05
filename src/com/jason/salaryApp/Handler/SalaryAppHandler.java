@@ -10,6 +10,9 @@ import com.jason.salaryApp.Utils.Tools;
 import java.nio.file.NoSuchFileException;
 
 public class SalaryAppHandler {
+    /*
+    This handler contains three API GUI calls
+     */
 
     private SalaryCalculationInput calculationInput;
 

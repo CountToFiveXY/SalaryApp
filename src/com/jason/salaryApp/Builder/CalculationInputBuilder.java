@@ -40,17 +40,9 @@ public class CalculationInputBuilder {
                 .stream()
                 .map(workSheet -> workSlotsMapBuilder.buildWorkSlotMapForEachSheet(workSheet))
                 .collect(Collectors.toList());
-        workSlotMaps.forEach(workSlotMap -> workSlotsMapFilter.filterWorkSlotsMap(workSlotMap, startDateString, endDateString));
+        workSlotMaps.forEach(workSlotMap -> workSlotsMapFilter.filterOnlyWorkSlotsMap(workSlotMap, startDateString, endDateString));
 
         return workSlotsMapCombiner.combineWorkSlotsMap(workSlotMaps);
-    }
-
-    private List<List<String[]>> getValidWorkSheets() {
-        return workSheetFileReader.getFormalFilesPath()
-                .stream()
-                .map(workSheetFileReader::readWorkSheetFile)
-                .filter(this::isValidWorkSheet)
-                .collect(Collectors.toList());
     }
 
     private HashMap<String, Float> getSalaryMap() throws NoSuchFileException{
@@ -59,6 +51,14 @@ public class CalculationInputBuilder {
             return null;
         }
         return salaryMapBuilder.buildSalaryMap(salarySheet);
+    }
+
+    private List<List<String[]>> getValidWorkSheets() {
+        return workSheetFileReader.getFormalFilesPath()
+                .stream()
+                .map(workSheetFileReader::readWorkSheetFile)
+                .filter(this::isValidWorkSheet)
+                .collect(Collectors.toList());
     }
 
     private boolean isValidWorkSheet(List<String[]> workSheet) {

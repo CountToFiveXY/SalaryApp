@@ -6,17 +6,16 @@ public class Main {
 
     /*
     Design Review:
-    Input: 1. 3 worksheet csvs
-           2. 1 salarySheet txt
+    Input: 1. worksheet csv(3) 2. salarySheet txt(1)
 
     Process:
-    3 csvs --> three raw worksheet data --> sheet check --> three valid raw worksheet data --> three workSlot map --> filter by calculation date --> combine to one workSlot Map
+    3 csv --> three raw worksheet data --> validation check --> three valid raw worksheet data --> three workSheet map --> filter by calculation date --> combine to one workSlot Map
     1 salary txt --> salary Sheet data --> salary Map
 
-    load button two maps --> calculationInput
-    calculation button --> operate on Input
-
-     */
+    UI:
+    load button --> build calculationInput(workSlot Map and Salary Map)
+    calculation button --> operation on calculationInput to create log
+    */
 
     public static void main(String[] args) {
         GUIBuilder guiBuilder = new GUIBuilder();

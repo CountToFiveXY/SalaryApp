@@ -10,7 +10,7 @@ import javax.swing.JTextField;
 import javax.swing.JOptionPane;
 import java.awt.event.ActionEvent;
 
-class JButtonBuilder {
+class JButtonFunctionBuilder {
 
     private SalaryAppHandler salaryAppHandler = new SalaryAppHandler();
 

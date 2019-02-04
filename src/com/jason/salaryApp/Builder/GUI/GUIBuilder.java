@@ -24,7 +24,7 @@ public class GUIBuilder {
     private JFrame jf;
     private JPanel jpanel;
     private ImageHandler imageHandler = new ImageHandler(ORIGINAL_IMAGE_PATH);
-    private JButtonBuilder buttonBuilder = new JButtonBuilder();
+    private JButtonFunctionBuilder buttonFunctionBuilder = new JButtonFunctionBuilder();
 
     public void buildGUI() {
         jf = new JFrame(KFT_VERSION_STRING);
@@ -48,11 +48,11 @@ public class GUIBuilder {
         //三个按钮
         JButton load, allSearch, singleSearch;
         load = createButton(LOAD_BUTTON, Color.white, 20, 102, 100, 35);
-        buttonBuilder.initializeLoadButton(load, fromText, toText);
+        buttonFunctionBuilder.initializeLoadButton(load, fromText, toText);
         allSearch = createButton(ALL_SEARCH_BUTTON, Color.white, 125,102,100,35);
-        buttonBuilder.initializeAllSearchButton(allSearch);
+        buttonFunctionBuilder.initializeAllSearchButton(allSearch);
         singleSearch = createButton(SINGLE_SEARCH_BUTTON, Color.white, 165,144,60,30);
-        buttonBuilder.initializeSingleSearchButton(singleSearch, nameText);
+        buttonFunctionBuilder.initializeSingleSearchButton(singleSearch, nameText);
 
         setUpJFrame();
     }

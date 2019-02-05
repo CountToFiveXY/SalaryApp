@@ -1,8 +1,9 @@
 package com.jason.salaryApp.Handler;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -10,7 +11,8 @@ import java.io.IOException;
 public class ImageHandler {
     private static final int IMG_WIDTH = 280;
     private static final int IMG_HEIGHT = 220;
-    private static final String IMAGE_PATH= "resources/background.jpg";
+    private static final String IMAGE_FORMAT = "jpg";
+    private static final String IMAGE_PATH = "resources/background.jpg";
 
     public ImageHandler(String imagePath) {
         printNewImage(imagePath);
@@ -29,17 +31,17 @@ public class ImageHandler {
             int type = originalImage.getType() == 0 ? BufferedImage.TYPE_INT_ARGB : originalImage.getType();
 
             BufferedImage resizeImageJpg = resizeImage(originalImage, type);
-            ImageIO.write(resizeImageJpg, "jpg", new File(IMAGE_PATH));
+            ImageIO.write(resizeImageJpg, IMAGE_FORMAT, new File(IMAGE_PATH));
         } catch (IOException e) {
-            System.out.println("Can't open: " + imagePath);
+            System.out.println("Can't open image: " + imagePath);
         }
     }
 
     private BufferedImage resizeImage(BufferedImage originalImage, int type) {
         BufferedImage resizedImage = new BufferedImage(IMG_WIDTH, IMG_HEIGHT, type);
-        Graphics2D g = resizedImage.createGraphics();
-        g.drawImage(originalImage, 0, 0, IMG_WIDTH, IMG_HEIGHT, null);
-        g.dispose();
+        Graphics2D graphics = resizedImage.createGraphics();
+        graphics.drawImage(originalImage, 0, 0, IMG_WIDTH, IMG_HEIGHT, null);
+        graphics.dispose();
         return resizedImage;
     }
 }

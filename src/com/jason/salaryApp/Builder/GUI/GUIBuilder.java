@@ -35,9 +35,9 @@ public class GUIBuilder {
 
         //create 4 labels
         createAuthorLabel();
-        createLable(LABEL_START_DATE, new Font("Dialog",0,13),30, 35, 70, 30);
-        createLable(LABEL_END_DATE, new Font("Dialog",0,13),30, 70, 70, 30);
-        createLable(LABEL3, new Font("Dialog",0,13),30, 145, 70, 30);
+        createLabel(LABEL_START_DATE, new Font("Dialog",0,13),30, 35, 70, 30);
+        createLabel(LABEL_END_DATE, new Font("Dialog",0,13),30, 70, 70, 30);
+        createLabel(LABEL3, new Font("Dialog",0,13),30, 145, 70, 30);
 
         //三个输入框, 前两个显示当前的日期
         final JTextField fromText, toText, nameText;
@@ -69,7 +69,15 @@ public class GUIBuilder {
         jpanel.setOpaque(false);
     }
 
-    private JLabel createLable(String labelName, Font font, int x, int y, int width, int height) {
+    private void setUpJFrame() {
+        jf.setLayout(null);
+        jf.setSize(APP_WIDTH, APP_HEIGHT);
+        jf.setVisible(true);
+        jf.setLocationRelativeTo(null);
+        jf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    }
+
+    private JLabel createLabel(String labelName, Font font, int x, int y, int width, int height) {
         JLabel label = new JLabel(labelName);
         label.setFont(font);
         ConfigLabel(label,x,y,width,height);
@@ -77,7 +85,7 @@ public class GUIBuilder {
     }
 
     private void createAuthorLabel() {
-        JLabel authorLabel = createLable(AUTHOR_LABEL, new Font("Times New Roman",1,14), 0,7,250,21);
+        JLabel authorLabel = createLabel(AUTHOR_LABEL, new Font("Times New Roman",1,14), 0,7,250,21);
         authorLabel.setBackground(Color.YELLOW);
         authorLabel.setForeground(Color.BLUE);
         authorLabel.setOpaque(true);
@@ -106,13 +114,5 @@ public class GUIBuilder {
         textField.setBounds(x, y, width, height);
         jpanel.add(textField);
         return textField;
-    }
-
-    private void setUpJFrame() {
-        jf.setLayout(null);
-        jf.setSize(APP_WIDTH, APP_HEIGHT);
-        jf.setVisible(true);
-        jf.setLocationRelativeTo(null);
-        jf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 }

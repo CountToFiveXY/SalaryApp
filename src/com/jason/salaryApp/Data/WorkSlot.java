@@ -23,7 +23,7 @@ public class WorkSlot {
         float to = StringUtils.convertTimeToNumberFormat(toTime);
         double workTime = to - from;
         //assume a workTime is longer than 3 hours
-        return workTime > 2.5 ? workTime : workTime + 12;
+        return workTime > 0 ? workTime : workTime + 12;
     }
 
     public String toLog() {

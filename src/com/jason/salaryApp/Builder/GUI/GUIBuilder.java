@@ -11,11 +11,13 @@ public class GUIBuilder {
     //App的参数
     private final static int APP_WIDTH = 250;
     private final static int APP_HEIGHT = 215;
-    private final static String KFT_VERSION_STRING  = " KFT工资计算器v3.1";
+    //4.1: 加入小费查询功能
+    private final static String KFT_VERSION_STRING  = " KFT工资计算器v4.1";
     private final static String AUTHOR_LABEL = "        ~~ Developed By @Jason ~~";
     private final static String LABEL_START_DATE = "开始日期:";
     private final static String LABEL_END_DATE = "结束日期:";
-    private final static String LABEL3 = "员工姓名:";
+    //private final static String LABEL_EMPLOYEE = "员工姓名:";
+    private final static String LABEL_TIP = "小费总数:";
     private final static String LOAD_BUTTON = "加载表格";
     private final static String ALL_SEARCH_BUTTON = "一键查询";
     private final static String SINGLE_SEARCH_BUTTON = "查询";
@@ -37,13 +39,14 @@ public class GUIBuilder {
         createAuthorLabel();
         createLabel(LABEL_START_DATE, new Font("Dialog",0,13),30, 35, 70, 30);
         createLabel(LABEL_END_DATE, new Font("Dialog",0,13),30, 70, 70, 30);
-        createLabel(LABEL3, new Font("Dialog",0,13),30, 145, 70, 30);
+        createLabel(LABEL_TIP, new Font("Dialog",0,13),30, 145, 70, 30);
 
         //三个输入框, 前两个显示当前的日期
-        final JTextField fromText, toText, nameText;
+        final JTextField fromText, toText, nameText, tipText;
         fromText = createTextWindow(Tools.getLocalTime(),95,35,125,28);
         toText = createTextWindow(Tools.getLocalTime(),95,70,125,28);
-        nameText = createTextWindow(null,95,145,60,30);
+        //nameText = createTextWindow(null,95,145,60,30);
+        tipText = createTextWindow(null,95,145,60,30);
 
         //三个按钮
         JButton load, allSearch, singleSearch;
@@ -52,7 +55,8 @@ public class GUIBuilder {
         allSearch = createButton(ALL_SEARCH_BUTTON, Color.white, 125,102,100,35);
         buttonFunctionBuilder.initializeAllSearchButton(allSearch);
         singleSearch = createButton(SINGLE_SEARCH_BUTTON, Color.white, 165,144,60,30);
-        buttonFunctionBuilder.initializeSingleSearchButton(singleSearch, nameText);
+        //buttonFunctionBuilder.initializeSingleSearchButton(singleSearch, nameText);
+        buttonFunctionBuilder.initializeTipSearchButton(singleSearch, tipText);
 
         setUpJFrame();
     }

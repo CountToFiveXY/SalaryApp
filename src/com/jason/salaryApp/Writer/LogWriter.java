@@ -18,7 +18,7 @@ public class LogWriter {
     private final static String SEPARATOR = "=======================================";
     private final static String ERROR_LOG_NAME = "错误.txt";
     private final static String ERROR_TITLE = "ERROR LOG";
-    private final static String ERROR_PREFIX = "ERROR TIME:";
+    private final static String ERROR_PREFIX = "--Date:";
 
     private static void writeLog(String logs, String logName, String logTitle, String log_prefix) {
         try {

@@ -82,7 +82,7 @@ public class StringUtils {
         return s.replace("－", "-");
     }
 
-    private static boolean isBlank(String str) {
+    public static boolean isBlank(String str) {
         int strLen;
         if (str == null || (strLen = str.length()) == 0) {
             return true;

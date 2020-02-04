@@ -3,13 +3,10 @@ package com.jason.salaryApp.Calculate;
 import com.jason.salaryApp.Builder.SalaryEasterEggBuilder;
 import com.jason.salaryApp.Data.SalaryCalculationInput;
 import com.jason.salaryApp.Data.WorkSlot;
-import com.jason.salaryApp.Utils.Tools;
-
 import java.util.*;
 
-public class SalaryCalculator {
+public class SalaryCalculator extends Calculator{
 
-    private double totalWorkHour = 0.0;
     private static final String FULL_TIME_LOG = "[全职] 全职无需结算工资: ";
     private static final String EMPLOYEE_LOG = "[员工] %s该时段总工资为:";
     private List<String> fullTimePeople = Arrays.asList("JING WEN", "Jing Shui", "Jing Bing");
@@ -60,20 +57,13 @@ public class SalaryCalculator {
                 "%s, Total WorkHour: %.1f + %.1f = %.1f hours."
                 , workSlot.toLog(), preWorkHour, workTime, totalWorkHour);
 
-        //apply log only for single Search
+        //log detailed Info only for single Search
         if (isSingleSearch) {
             AddToLogBuilder(proceedWorkSlotLog, logForOne);
         }
     }
+
     private void sortPersonNameList(List<String> personNames) {
         personNames.sort(Comparator.comparing(fullTimePeople::contains));
-    }
-
-    private void AddToLogBuilder(String logString, StringBuilder sb) {
-        sb.append(logString + Tools.LOG_SEPARATOR);
-    }
-
-    private void resetTotalWorkHour() {
-        totalWorkHour = 0.0;
     }
 }

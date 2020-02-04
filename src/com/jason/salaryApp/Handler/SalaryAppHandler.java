@@ -2,9 +2,11 @@ package com.jason.salaryApp.Handler;
 
 import com.jason.salaryApp.Builder.CalculationInputBuilder;
 import com.jason.salaryApp.Calculate.SalaryCalculator;
+import com.jason.salaryApp.Calculate.TipCalculator;
 import com.jason.salaryApp.Data.SalaryCalculationInput;
 import com.jason.salaryApp.Predicate.ValidSalaryCalculationInputPredicate;
 import com.jason.salaryApp.Utils.ErrorMessages;
+import com.jason.salaryApp.Utils.StringUtils;
 import com.jason.salaryApp.Utils.Tools;
 
 import java.nio.file.NoSuchFileException;
@@ -35,5 +37,11 @@ public class SalaryAppHandler {
     public String calculateSalaryForOne(String personName) {
         Tools.checkArgument(calculationInput.getWorkSlotMap().containsKey(personName), ErrorMessages.WRONG_INPUT_PERSON);
         return salaryCalculator.calculateSalaryForOnePerson(calculationInput, personName, true);
+    }
+
+    public String calculateTipForAll(String tipNumber) {
+        Tools.checkArgument(StringUtils.isNotBlank(tipNumber), ErrorMessages.WRONG_INPUT_TIP);
+        TipCalculator tipCalculator = new TipCalculator(Double.valueOf(tipNumber));
+        return tipCalculator.calculateTipsForAll(calculationInput);
     }
 }

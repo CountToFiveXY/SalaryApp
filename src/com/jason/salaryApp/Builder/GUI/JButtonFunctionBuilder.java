@@ -59,4 +59,22 @@ class JButtonFunctionBuilder {
             }
         );
     }
+
+    void initializeTipSearchButton(JButton singleSearch, JTextField nameText) {
+        singleSearch.addActionListener((ActionEvent e) -> {
+                    String buttonMessage;
+                    String tipNumber = nameText.getText();
+
+                    try {
+                        LogWriter.writeSalaryLog(salaryAppHandler.calculateTipForAll(tipNumber));
+                        buttonMessage = "分摊总计" + tipNumber + "的小费";
+                    } catch (Exception exception) {
+                        buttonMessage = ErrorMessages.BUTTON_ERROR_MESSAGE;;
+                        LogWriter.writeErrorLog(exception.getMessage());
+                    }
+
+                    JOptionPane.showMessageDialog(null, buttonMessage);
+                }
+        );
+    }
 }

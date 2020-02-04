@@ -1,6 +1,8 @@
 package com.jason.salaryApp.Data;
 
+import com.jason.salaryApp.Utils.ErrorMessages;
 import com.jason.salaryApp.Utils.StringUtils;
+import com.jason.salaryApp.Utils.Tools;
 import lombok.Data;
 
 @Data
@@ -22,8 +24,9 @@ public class WorkSlot {
         float from = StringUtils.convertTimeToNumberFormat(fromTime);
         float to = StringUtils.convertTimeToNumberFormat(toTime);
         double workTime = to - from;
+        Tools.checkArgument(workTime > 0, ErrorMessages.BAD_WORKSLOT_TIME);
         //assume a workTime is longer than 3 hours
-        return workTime > 0 ? workTime : workTime + 12;
+        return workTime;
     }
 
     public String toLog() {

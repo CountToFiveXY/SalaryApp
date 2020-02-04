@@ -27,7 +27,7 @@ public class StringUtils {
     }
 
     public static String[] convertDateString(String s) {
-        return s.split("-");
+        return s.split("/");
     }
 
     public static String[] convertWorkSlotString(String s) {
@@ -55,13 +55,18 @@ public class StringUtils {
     }
 
     public static float convertTimeToNumberFormat(String timeString) {
-        String[] timeArray = convertWorkHourString(timeString);
+        boolean isAm = false;
+        if (timeString.endsWith("am")) {
+            isAm = true;
+        }
+        String time = timeString.substring(0, timeString.length() - 2);
+        String[] timeArray = convertWorkHourString(time);
+        int hour = isAm? toInteger(timeArray[0]) : toInteger(timeArray[0]) + 12;
         if (timeArray.length > 1) {
-            int hour = toInteger(timeArray[0]);
             float minute = toInteger(timeArray[1])/60f;
             return hour + minute;
         }
-        return toFloat(timeArray[0]);
+        return hour;
     }
 
     public static String removeBlankPrefixAndSuffix(String s) {
@@ -95,7 +100,7 @@ public class StringUtils {
         return true;
     }
 
-    private static int toInteger(String s){
+    public static int toInteger(String s){
         return Integer.parseInt(s);
     }
 }

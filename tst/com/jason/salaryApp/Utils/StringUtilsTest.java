@@ -47,11 +47,11 @@ public class StringUtilsTest {
     @Test
     public void testConvertDateStringForValidString() {
         String[] result;
-        String inputString = "2018-01-02";
+        String inputString = "1/2/2018";
         result = StringUtils.convertDateString(inputString);
-        Assert.assertEquals("2018", result[0]);
-        Assert.assertEquals("01", result[1]);
-        Assert.assertEquals("02", result[2]);
+        Assert.assertEquals("1", result[0]);
+        Assert.assertEquals("2", result[1]);
+        Assert.assertEquals("2018", result[2]);
         Assert.assertEquals(3, result.length);
     }
 
@@ -65,21 +65,12 @@ public class StringUtilsTest {
 
     //Unit tests For Method: convertWorkSlotString
     @Test
-    public void testConvertWorkSlotString1() {
+    public void testConvertWorkSlotString() {
         String[] result;
-        String inputString = "4-10";
+        String inputString = "11am-10pm";
         result = StringUtils.convertWorkSlotString(inputString);
-        Assert.assertEquals("4", result[0]);
-        Assert.assertEquals("10", result[1]);
-    }
-
-    @Test
-    public void testConvertWorkSlotString2() {
-        String[] result;
-        String inputString = "9:30－4";
-        result = StringUtils.convertWorkSlotString(inputString);
-        Assert.assertEquals("9:30", result[0]);
-        Assert.assertEquals("4", result[1]);
+        Assert.assertEquals("11am", result[0]);
+        Assert.assertEquals("10pm", result[1]);
     }
 
     //Unit tests For Method: convertWorkHourString
@@ -141,7 +132,7 @@ public class StringUtilsTest {
     @Test
     public void testConvertTimeToNumberFormat1() {
         float result;
-        String inputString = "9:30";
+        String inputString = "9:30am";
         result = StringUtils.convertTimeToNumberFormat(inputString);
         Assert.assertTrue(result == 9.5);
     }
@@ -149,9 +140,9 @@ public class StringUtilsTest {
     @Test
     public void testConvertTimeToNumberFormat2() {
         float result;
-        String inputString = "5";
+        String inputString = "5:30pm";
         result = StringUtils.convertTimeToNumberFormat(inputString);
-        Assert.assertTrue(result == 5);
+        Assert.assertTrue(result == 17.5);
     }
 
     //Unit tests For Method: removeBlankPrefixAndSuffix

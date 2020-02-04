@@ -15,14 +15,14 @@ public class ValidWorkSlotPredicateTest {
 
     @Test
     public void testValidWorkSlotString1() {
-        String date = "5-10";
+        String date = "11am-10pm";
         boolean result = predicate.test(date);
         assertTrue(result);
     }
 
     @Test
     public void testValidWorkSlotString2() {
-        String date = "9:30-12";
+        String date = "5pm-9:30pm";
         boolean result = predicate.test(date);
         assertTrue(result);
     }

@@ -13,11 +13,12 @@ public class ErrorMessages {
 
     //WorkSlot Error
     public static final String NULL_WORKSLOT_VALUE = "[ERROR]Bad WorkSheet Input: this workSlot's value is wrong:";
-    public static final String BAD_WORKSHEET_COLUMN ="[ERROR]Bad WorkSheet Input: table should have 15 columns";
+    public static final String BAD_WORKSLOT_TIME = "[ERROR]Bad WorkSlot time: workSlot must has positive worktime:";
+    public static final String BAD_WORKSHEET_COLUMN ="[ERROR]Bad WorkSheet Input: table should have 8 columns";
     public static final String BAD_DATE_ROW = "[ERROR]Bad WorkSheet Date Row";
     public static final String BAD_WEEKDAY_ROW = "[ERROR]Bad WorkSheet Weekday Row";
     public static final String BAD_WORKSLOT_VALUE = "[ERROR]Bad WorkSheet Input: some workSlot value of this row may be wrong:";
-    public static final String ROW_EXCEED_COLUMN = "[ERROR]This row has 15+ columns:";
+    public static final String ROW_EXCEED_COLUMN = "[ERROR]This row has 8+ columns:";
 
     //Input Error
     public static final String WRONG_INPUT_PERSON = "[ERROR]This person is not in workSheet";

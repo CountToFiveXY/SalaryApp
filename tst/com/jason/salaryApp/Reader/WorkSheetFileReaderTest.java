@@ -9,6 +9,7 @@ import java.util.List;
 
 public class WorkSheetFileReaderTest {
     private final WorkSheetFileReader reader = new WorkSheetFileReader();
+    private final int column_number = WorkSheetFileReader.COLUMN_NUM;
 
     @Test
     public void testConvertInputCSVFileToArrayForTestInput1() {
@@ -27,7 +28,7 @@ public class WorkSheetFileReaderTest {
     @Test
     public void testConvertInputCSVFileToArrayForTestInput3() {
         List<String[]> result = reader.readWorkSheetFile(WorkSheetFileReader.TEST_WORKSHEET_FILE_PATH + "3.csv");
-        Assert.assertEquals("2018-04-30", result.get(0)[1]);
+        Assert.assertEquals("1/13/2020", result.get(0)[1]);
         printWorkSheet(result);
     }
 
@@ -46,7 +47,7 @@ public class WorkSheetFileReaderTest {
     public void testModifyEachRow1() {
         String[] input = new String[]{"1", "", " 2"};
         String[] result = reader.modifyEachRow(input);
-        Assert.assertEquals(15, result.length);
+        Assert.assertEquals(column_number, result.length);
         Assert.assertEquals("1", result[0]);
         Assert.assertEquals("X", result[1]);
         Assert.assertEquals("2", result[2]);
@@ -56,11 +57,11 @@ public class WorkSheetFileReaderTest {
     public void testModifyEachRow2() {
         String[] input = new String[]{"Cindy", "", " ", " 5-10"};
         String[] result = reader.modifyEachRow(input);
-        Assert.assertEquals(15, result.length);
+        Assert.assertEquals(column_number, result.length);
         Assert.assertEquals("Cindy", result[0]);
         Assert.assertEquals("X", result[1]);
         Assert.assertEquals("5-10", result[3]);
-        Assert.assertEquals("X", result[13]);
+        Assert.assertEquals("X", result[7]);
     }
 
     @Test

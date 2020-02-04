@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 @Component
 public class WorkSheetFileReader {
 
-    public static final int COLUMN_NUM = 15;
+    public static final int COLUMN_NUM = 8;
     private static final String DATE_STRING = "Date";
     private static final String WEEKDAY_STRING = "WeekDay";
     private static final String X = "X";
@@ -112,6 +112,6 @@ public class WorkSheetFileReader {
 
     private boolean checkColumnForEachRow(String line, String[] rowContext) {
         int len = (line + "s").split(",").length;
-        return rowContext.length == 0 || len == 15;
+        return rowContext.length == 0 || len == COLUMN_NUM;
     }
 }

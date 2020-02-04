@@ -3,6 +3,8 @@ package com.jason.salaryApp.Predicate;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.text.SimpleDateFormat;
+
 import static org.junit.Assert.*;
 
 public class ValidDatePredicateTest {
@@ -15,23 +17,23 @@ public class ValidDatePredicateTest {
 
     @Test
     public void testValidDateString() {
-        String date = "2018-01-07";
+        String date = "01/07/2020";
         boolean result = predicate.test(date);
         assertTrue(result);
     }
 
     @Test
-    public void testUnValidDateString1() {
-        String date = "2018－01－07";
+    public void testValidDateString1() {
+        String date = "01/31/2020";
         boolean result = predicate.test(date);
-        assertFalse(result);
+        assertTrue(result);
     }
 
     @Test
-    public void testUnValidDateString2() {
-        String date = "2018-1-07";
+    public void testValidDateString2() {
+        String date = "12/04/2020";
         boolean result = predicate.test(date);
-        assertFalse(result);
+        assertTrue(result);
     }
 
     @Test

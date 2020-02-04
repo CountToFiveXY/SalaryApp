@@ -27,7 +27,7 @@ public class ValidWorkTablePredicateTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testNonEmptySlotForBad() {
-        List<String[]> input = workSheetFileReader.readWorkSheetFile(WorkSheetFileReader.TEST_WORKSHEET_FILE_PATH + "3.csv");
+        List<String[]> input = workSheetFileReader.readWorkSheetFile(WorkSheetFileReader.TEST_WORKSHEET_FILE_PATH + "bad.csv");
         predicate.test(input);
     }
 

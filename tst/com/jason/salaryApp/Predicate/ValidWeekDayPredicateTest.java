@@ -8,7 +8,7 @@ public class ValidWeekDayPredicateTest {
 
     @Test
     public void testPredicate1() {
-        Assert.assertTrue(predicate.test("Mon"));
+        Assert.assertTrue(predicate.test("Monday"));
     }
 
     @Test

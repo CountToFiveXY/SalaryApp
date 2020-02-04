@@ -6,8 +6,8 @@ import org.junit.Test;
 
 public class WorkSlotTest {
 
-    WorkSlot testWorkSlot1 = new WorkSlot("11－4", "2018-05-10", "Mon");
-    WorkSlot testWorkSlot2 = new WorkSlot("9:30－5", "2018-05-10", "Mon");
+    WorkSlot testWorkSlot1 = new WorkSlot("11am－4pm", "1/29/2020", "Monday");
+    WorkSlot testWorkSlot2 = new WorkSlot("9:30am－5pm", "1/29/2020", "Tuesday");
 
     @Test
     public void testGetWorkTime1() {

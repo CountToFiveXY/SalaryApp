@@ -5,9 +5,7 @@ import com.jason.salaryApp.Data.WorkSlot;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
@@ -16,19 +14,27 @@ public class ValidSalaryCalculationInputPredicateTest {
 
     private HashMap<String, List<WorkSlot>> workSlotsMap;
     private HashMap<String, Float> salaryMap;
+    private Set<String> fullTimeSet;
     private SalaryCalculationInput  input;
     private ValidSalaryCalculationInputPredicate predicate;
 
     @Before
     public void setUp() {
         buildMap();
-        input = new SalaryCalculationInput(workSlotsMap, salaryMap);
+        input = new SalaryCalculationInput(workSlotsMap, salaryMap, fullTimeSet);
         predicate = new ValidSalaryCalculationInputPredicate();
     }
 
     @Test
     public void testForGoodInput() {
         AddWorkSlotMap("Jason");
+        boolean result = predicate.test(input);
+        assertTrue(result);
+    }
+
+    @Test
+    public void testForGoodInput2() {
+        AddWorkSlotMap("Wendy");
         boolean result = predicate.test(input);
         assertTrue(result);
     }
@@ -54,7 +60,9 @@ public class ValidSalaryCalculationInputPredicateTest {
     private void buildMap() {
         workSlotsMap = new HashMap<>();
         salaryMap = new HashMap<>();
+        fullTimeSet = new HashSet<>();
         salaryMap.put("Jason", 8.5f);
-        salaryMap.put("Wendy", 10.0f);
+        salaryMap.put("*Wendy", 10.0f);
+        fullTimeSet.add("Wendy");
     }
 }

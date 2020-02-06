@@ -1,15 +1,8 @@
-JING WEN-20.00
-Jing Shui-20.00
-Jing Bing-20.00
-Janet-10.00
-WEN QIAN-9.00
-Cindy-8.5
-Neil Yang-8.5
-Wei Ting-8.25
-Rachel-8.25
-Ting-8.25
-Sarah-8.25
-Joshua-8.25
-Kevin-8.25
-Zhao Yue-8.25
-Echo-8.25
+*JingWen-13.00
+India-9.00
+Amelia-8.5
+Ethan-8.5
+Teresa-8.5
+Isabella-8.5
+*Cindy-13.00
+Paige-8.5

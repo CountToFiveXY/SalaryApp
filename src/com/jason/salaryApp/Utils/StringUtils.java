@@ -27,7 +27,7 @@ public class StringUtils {
     }
 
     public static String[] convertDateString(String s) {
-        return s.split("/");
+        return s.split("-");
     }
 
     public static String[] convertWorkSlotString(String s) {
@@ -56,7 +56,7 @@ public class StringUtils {
 
     public static float convertTimeToNumberFormat(String timeString) {
         boolean isAm = false;
-        if (timeString.endsWith("am")) {
+        if (timeString.endsWith("am") || timeString.startsWith("12")) {
             isAm = true;
         }
         String time = timeString.substring(0, timeString.length() - 2);
@@ -85,6 +85,10 @@ public class StringUtils {
     public static String replaceStashString(String s) {
         if (isBlank(s)) { return null; }
         return s.replace("－", "-");
+    }
+
+    public static boolean isFullTime(String s) {
+        return s.startsWith("*");
     }
 
     public static boolean isBlank(String str) {

@@ -47,11 +47,11 @@ public class StringUtilsTest {
     @Test
     public void testConvertDateStringForValidString() {
         String[] result;
-        String inputString = "1/2/2018";
+        String inputString = "2018-1-2";
         result = StringUtils.convertDateString(inputString);
-        Assert.assertEquals("1", result[0]);
-        Assert.assertEquals("2", result[1]);
-        Assert.assertEquals("2018", result[2]);
+        Assert.assertEquals("1", result[1]);
+        Assert.assertEquals("2", result[2]);
+        Assert.assertEquals("2018", result[0]);
         Assert.assertEquals(3, result.length);
     }
 

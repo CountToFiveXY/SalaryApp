@@ -23,7 +23,7 @@ class JButtonFunctionBuilder {
                 SalaryCalculationInput input;
                 try {
                     input = salaryAppHandler.buildCalculationInput(from, to);
-                    buttonMessage = String.format("日期%s到%s, 本次有工资记录的员工人数有:%s", fromText.getText(), toText.getText(), input.getWorkSlotMap().keySet().toString());
+                    buttonMessage = String.format("工时%s到%s, 本次有工资记录的员工人数有:%s", fromText.getText(), toText.getText(), input.getWorkSlotMap().keySet().toString());
                 } catch (Exception exception) {
                     buttonMessage = ErrorMessages.BUTTON_ERROR_MESSAGE;
                     LogWriter.writeErrorLog(exception.getMessage());

@@ -1,6 +1,5 @@
 package com.jason.salaryApp.Calculate;
 
-import com.jason.salaryApp.Builder.SalaryEasterEggBuilder;
 import com.jason.salaryApp.Data.SalaryCalculationInput;
 import com.jason.salaryApp.Data.WorkSlot;
 import java.util.*;
@@ -9,18 +8,14 @@ public class SalaryCalculator extends Calculator{
 
     private static final String FULL_TIME_LOG = "[全职] 全职无需结算工资: ";
     private static final String EMPLOYEE_LOG = "[员工] %s该时段总工资为:";
-    private List<String> fullTimePeople = Arrays.asList("JING WEN", "Jing Shui", "Jing Bing");
 
     public String calculateForAll(SalaryCalculationInput input) {
         StringBuilder logBuilderForAll = new StringBuilder();
         List<String> personNames = new ArrayList<>(input.getWorkSlotMap().keySet());
-
-        sortPersonNameList(personNames);
-
+        sortPersonNameList(personNames, input.getFullTimeSet());
         for (String personName : personNames) {
             logBuilderForAll.append(calculateSalaryForOnePerson(input, personName, false));
         }
-
         return logBuilderForAll.toString();
     }
 
@@ -28,6 +23,7 @@ public class SalaryCalculator extends Calculator{
         StringBuilder logBuilderForOne = new StringBuilder();
         Map<String, List<WorkSlot>> workSlotsMap = input.getWorkSlotMap();
         Map<String, Float> salaryMap = input.getSalaryMap();
+        Set<String> fullTimePeople = input.getFullTimeSet();
 
         if (fullTimePeople.contains(personName)) {
             AddToLogBuilder(FULL_TIME_LOG + personName, logBuilderForOne);
@@ -43,7 +39,7 @@ public class SalaryCalculator extends Calculator{
         workSlotsForThisPerson.forEach(workSlot -> logEachWorkSlotAndTotalHour(workSlot, isSingleSearch, logBuilderForOne));
 
         double totalSalary = totalWorkHour * salaryPerHour;
-        String sumSalaryLog = String.format("%.2f(h) X %.2f($/h) = $%.2f%s",totalWorkHour, salaryPerHour, totalSalary, SalaryEasterEggBuilder.easterEgg(totalSalary));
+        String sumSalaryLog = String.format("%.2f(h) X %.2f($/h) = $%.2f",totalWorkHour, salaryPerHour, totalSalary);
         resetTotalWorkHour();
         AddToLogBuilder(sumSalaryLog, logBuilderForOne);
         return logBuilderForOne.toString();
@@ -63,7 +59,7 @@ public class SalaryCalculator extends Calculator{
         }
     }
 
-    private void sortPersonNameList(List<String> personNames) {
+    private void sortPersonNameList(List<String> personNames, Set<String> fullTimePeople) {
         personNames.sort(Comparator.comparing(fullTimePeople::contains));
     }
 }

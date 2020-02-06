@@ -17,21 +17,21 @@ public class ValidDatePredicateTest {
 
     @Test
     public void testValidDateString() {
-        String date = "01/07/2020";
+        String date = "2020-01-07";
         boolean result = predicate.test(date);
         assertTrue(result);
     }
 
     @Test
     public void testValidDateString1() {
-        String date = "01/31/2020";
+        String date = "2020-01-31";
         boolean result = predicate.test(date);
         assertTrue(result);
     }
 
     @Test
     public void testValidDateString2() {
-        String date = "12/04/2020";
+        String date = "2020-12-04";
         boolean result = predicate.test(date);
         assertTrue(result);
     }

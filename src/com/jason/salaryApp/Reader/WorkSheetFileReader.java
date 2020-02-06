@@ -19,7 +19,6 @@ public class WorkSheetFileReader {
 
     public static final int COLUMN_NUM = 8;
     private static final String DATE_STRING = "Date";
-    private static final String WEEKDAY_STRING = "WeekDay";
     private static final String X = "X";
     private static final List<String> files = Arrays.asList("1.csv", "2.csv", "3.csv");
 
@@ -77,22 +76,10 @@ public class WorkSheetFileReader {
     }
 
     private void modifySpecialRow(String[] modifiedRow) {
-
         if (isDateRow(modifiedRow)) {
             modifiedRow[0] = DATE_STRING;
-            for (int i = 2; i < modifiedRow.length; i+=2) {
-                modifiedRow[i] = modifiedRow[i-1];
-            }
-
             for (int i = 1; i < modifiedRow.length; i++) {
                 modifiedRow[i] = Tools.formatDate(modifiedRow[i]);
-            }
-        }
-
-        if (isWeekDayRow(modifiedRow)) {
-            modifiedRow[0] = WEEKDAY_STRING;
-            for (int i = 2; i < modifiedRow.length; i+=2) {
-                modifiedRow[i] = modifiedRow[i-1];
             }
         }
     }
@@ -103,11 +90,7 @@ public class WorkSheetFileReader {
     }
 
     private boolean isDateRow(String[] modifiedRow) {
-        return modifiedRow[0].equals(X) && modifiedRow[1].startsWith("2");
-    }
-
-    private boolean isWeekDayRow(String[] modifiedRow) {
-        return modifiedRow[0].equals(X) && modifiedRow[1].equals("Mon");
+        return modifiedRow[0].equals(DATE_STRING);
     }
 
     private boolean checkColumnForEachRow(String line, String[] rowContext) {

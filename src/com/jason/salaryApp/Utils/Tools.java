@@ -13,7 +13,8 @@ public class Tools {
     public static final String LOG_SEPARATOR = "@";
     public static final String NEW_LINE = System.getProperty("line.separator");
 
-    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    private static final SimpleDateFormat workDateFormat = new SimpleDateFormat("MM/dd/yyyy");
+    private static final SimpleDateFormat inputDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
     public static String getLocalTime() {
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -28,19 +29,19 @@ public class Tools {
     public static String formatDate(String dateString) {
         Date date;
         try {
-            date = dateFormat.parse(dateString);
+            date = workDateFormat.parse(dateString);
         } catch (ParseException e) {
             throw new WrongDateFormatException(ErrorMessages.WRONG_INPUT_DATE_FORMAT + dateString);
         }
-        return dateFormat.format(date);
+        return inputDateFormat.format(date);
     }
 
     public static boolean isBetweenTwoDays (String date, String start, String end) {
         Date startDate, endDate, workDate;
         try {
-            workDate = dateFormat.parse(date);
-            startDate = dateFormat.parse(start);
-            endDate = dateFormat.parse(end);
+            workDate = inputDateFormat.parse(date);
+            startDate = inputDateFormat.parse(start);
+            endDate = inputDateFormat.parse(end);
         } catch (ParseException e) {
             throw new WrongDateFormatException(ErrorMessages.WRONG_INPUT_DATE_FORMAT);
         }

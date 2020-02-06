@@ -24,12 +24,15 @@ public class WorkSlot {
         float from = StringUtils.convertTimeToNumberFormat(fromTime);
         float to = StringUtils.convertTimeToNumberFormat(toTime);
         double workTime = to - from;
-        Tools.checkArgument(workTime > 0, ErrorMessages.BAD_WORKSLOT_TIME);
-        //assume a workTime is longer than 3 hours
+        Tools.checkArgument(workTime > 0, ErrorMessages.BAD_WORKSLOT_TIME + getWorkInfo());
         return workTime;
     }
 
     public String toLog() {
         return String.format("Date: %s, workTime: %s--%s(%.1f hours)", getDate(), getFromTime(), getToTime(), getWorkTime());
+    }
+
+    private String getWorkInfo() {
+        return String.format("%s - %s", fromTime, toTime);
     }
 }

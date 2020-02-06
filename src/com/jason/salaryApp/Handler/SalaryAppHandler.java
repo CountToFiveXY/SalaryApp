@@ -35,7 +35,7 @@ public class SalaryAppHandler {
     }
 
     public String calculateSalaryForOne(String personName) {
-        Tools.checkArgument(calculationInput.getWorkSlotMap().containsKey(personName), ErrorMessages.WRONG_INPUT_PERSON);
+        Tools.checkArgument(calculationInput.getWorkSlotMap().containsKey(personName), ErrorMessages.WRONG_INPUT_PERSON + personName);
         return salaryCalculator.calculateSalaryForOnePerson(calculationInput, personName, true);
     }
 

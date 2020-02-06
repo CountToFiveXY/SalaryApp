@@ -63,7 +63,7 @@ public class ValidWorkTablePredicate {
                 .filter(s -> !s.equals("WeekDay"))
                 .allMatch(new ValidWeekDayPredicate());
         if (!flag)
-            throw new IllegalArgumentException(ErrorMessages.BAD_WEEKDAY_ROW);
+            throw new IllegalArgumentException(ErrorMessages.BAD_WEEKDAY_ROW + Arrays.asList(workSheet.get(0)));
         return true;
     }
 

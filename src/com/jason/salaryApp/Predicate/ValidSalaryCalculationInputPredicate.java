@@ -17,8 +17,10 @@ public class ValidSalaryCalculationInputPredicate implements Predicate<SalaryCal
     public List<String> getUnSalariedPeopleName(SalaryCalculationInput input) {
         Set<String> workPeopleSet = input.getWorkSlotMap().keySet();
         Set<String> salariedPeopleSet = input.getSalaryMap().keySet();
+        Set<String> fullTimePeopleSet = input.getFullTimeSet();
         return workPeopleSet.stream()
                 .filter(name -> !salariedPeopleSet.contains(name))
+                .filter(name -> !fullTimePeopleSet.contains(name))
                 .collect(Collectors.toList());
     }
 }

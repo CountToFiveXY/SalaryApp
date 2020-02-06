@@ -1,2 +1,2 @@
 Jason-8.0
-JINGWEN-10.0
+*JINGWEN-10.0

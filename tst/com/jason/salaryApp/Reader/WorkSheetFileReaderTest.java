@@ -28,7 +28,7 @@ public class WorkSheetFileReaderTest {
     @Test
     public void testConvertInputCSVFileToArrayForTestInput3() {
         List<String[]> result = reader.readWorkSheetFile(WorkSheetFileReader.TEST_WORKSHEET_FILE_PATH + "3.csv");
-        Assert.assertEquals("1/13/2020", result.get(0)[1]);
+        Assert.assertEquals("2020-01-13", result.get(0)[1]);
         printWorkSheet(result);
     }
 

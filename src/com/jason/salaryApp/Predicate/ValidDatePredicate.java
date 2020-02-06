@@ -12,9 +12,9 @@ public class ValidDatePredicate implements Predicate<String>{
         String[] date = StringUtils.convertDateString(dateString);
 
         return date.length == 3
-                && testMonth(date[0])
-                && testDay(date[1])
-                && testYear(date[2]);
+                && testMonth(date[1])
+                && testDay(date[2])
+                && testYear(date[0]);
     }
 
     private boolean testYear(String year) {

@@ -2,11 +2,13 @@ package com.jason.salaryApp.Builder;
 
 import com.jason.salaryApp.Reader.SalaryFileReader;
 import com.jason.salaryApp.Utils.Tools;
+import org.junit.Assert;
 import org.junit.Test;
 
 import java.nio.file.NoSuchFileException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
 public class SalaryMapBuilderTest {
     private SalaryFileReader reader = new SalaryFileReader();
@@ -17,6 +19,13 @@ public class SalaryMapBuilderTest {
         List<String[]> input = getInputTable("test_salary_good.txt");
         HashMap<String, Float> result = builder.buildSalaryMap(input);
         printMap(result);
+    }
+
+    @Test
+    public void testSetUpFullTimeSetForEachSheet() throws NoSuchFileException {
+        List<String[]> input = getInputTable("test_salary_good.txt");
+        Set<String> result = builder.buildFullTimeSet(input);
+        Assert.assertTrue(result.contains("JINGWEN"));
     }
 
     private List<String[]> getInputTable(String fileName) throws NoSuchFileException{

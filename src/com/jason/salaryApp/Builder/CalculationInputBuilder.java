@@ -12,6 +12,7 @@ import com.jason.salaryApp.Reader.WorkSheetFileReader;
 import java.nio.file.NoSuchFileException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class CalculationInputBuilder {
@@ -32,7 +33,7 @@ public class CalculationInputBuilder {
 
     //build workSlotMap and SalaryMap separately and build Calculation Input with them.
     public SalaryCalculationInput buildCalculationInput(String startDateString, String endDateString) throws NoSuchFileException {
-        return new SalaryCalculationInput(getWorkSlotsMap(startDateString, endDateString), getSalaryMap());
+        return new SalaryCalculationInput(getWorkSlotsMap(startDateString, endDateString), getSalaryMap(), getFullTimeSet());
     }
 
     private HashMap<String, List<WorkSlot>> getWorkSlotsMap(String startDateString, String endDateString) {
@@ -51,6 +52,14 @@ public class CalculationInputBuilder {
             return null;
         }
         return salaryMapBuilder.buildSalaryMap(salarySheet);
+    }
+
+    private Set<String> getFullTimeSet() throws NoSuchFileException{
+        List<String[]> salarySheet = salaryFileReader.getFormalSalaryFile();
+        if (!salarySheetPredicate.test(salarySheet)) {
+            return null;
+        }
+        return salaryMapBuilder.buildFullTimeSet(salarySheet);
     }
 
     private List<List<String[]>> getValidWorkSheets() {
